@@ -3,7 +3,7 @@ import Link from "next/link";
 import Timer from "../components/Timer";
 import MileCounter from "../components/MileCounter";
 import { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
-
+import styled from "styled-components";
 
 
 
@@ -49,8 +49,8 @@ const StartStop = (props: StartStopProps) => {
     const { isRunning, toggle } = props;
     return (
         isRunning 
-            ? <a onClick={() => toggle(false)}>Pause</a>
-            : <a onClick={() => toggle(true)}>Start</a>
+            ? <Button onClick={() => toggle(false)}>Pause</Button>
+            : <Button onClick={() => toggle(true)}>Start</Button>
     )
 }
 function useInterval(callback: any, delay: any) {
@@ -97,18 +97,50 @@ const Running = () => {
 
     return (
         <Page>
-            <h1>Run!</h1>
+            <h1 style={{fontFamily: "sans-serif"}}>Run!</h1>
             <MileCounter />
             <Timer time={duration}/>
             <StartStop isRunning={isRunning} toggle={setIsRunning}/>
-            <Link href="/finished"><a>Stop</a></Link>
-            <ul>
+            <Link href="/finished"><ButtonLink>Stop</ButtonLink></Link>
+            <Console>
             {
-                coordinates.map(x => <li key={x.utc}>Lat: {x.lat} | Lng: {x.lng} | UTC: {x.utc}</li>)
+                coordinates.map(x => <LineItem key={x.utc}>Lat: {x.lat} | Lng: {x.lng} | UTC: {x.utc}</LineItem>)
             }
-                </ul>
+            </Console>
         </Page>
     )
 }
-    
+
+const Button = styled.button`
+    padding: 10px 30px ;
+    border: none;
+    background: orange;
+    margin: 15px;
+    font-family: sans-serif;
+    font-size: 14px;
+`;
+
+const ButtonLink = styled.a`
+    padding: 10px 30px ;
+    border: none;
+    background: orange;
+    font-family: sans-serif;
+    font-size: 14px;
+`;
+const Console = styled.ul`
+    background: #16103a;
+    min-height: 500px;
+    max-height: 1024px;
+    overflow: scroll;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+`;
+const LineItem = styled.li`
+    font-size: 10px;
+    color: #fff;
+    list-style-type: none;
+    font-family: monospace;
+    padding: 0;
+`
+
 export default Running

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -862,10 +862,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Timer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Timer */ "./components/Timer.tsx");
 /* harmony import */ var _components_MileCounter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/MileCounter */ "./components/MileCounter.tsx");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_6__);
 
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 
@@ -903,14 +906,14 @@ const StartStop = props => {
     isRunning,
     toggle
   } = props;
-  return isRunning ? __jsx("a", {
+  return isRunning ? __jsx(Button, {
     onClick: () => toggle(false),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 52
     },
     __self: undefined
-  }, "Pause") : __jsx("a", {
+  }, "Pause") : __jsx(Button, {
     onClick: () => toggle(true),
     __source: {
       fileName: _jsxFileName,
@@ -973,6 +976,9 @@ const Running = () => {
     },
     __self: undefined
   }, __jsx("h1", {
+    style: {
+      fontFamily: "sans-serif"
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 100
@@ -1006,19 +1012,19 @@ const Running = () => {
       lineNumber: 104
     },
     __self: undefined
-  }, __jsx("a", {
+  }, __jsx(ButtonLink, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 104
     },
     __self: undefined
-  }, "Stop")), __jsx("ul", {
+  }, "Stop")), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 105
     },
     __self: undefined
-  }, coordinates.map(x => __jsx("li", {
+  }, coordinates.map(x => __jsx(LineItem, {
     key: x.utc,
     __source: {
       fileName: _jsxFileName,
@@ -1028,6 +1034,36 @@ const Running = () => {
   }, "Lat: ", x.lat, " | Lng: ", x.lng, " | UTC: ", x.utc))));
 };
 
+const Button = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.button`
+    padding: 10px 30px ;
+    border: none;
+    background: orange;
+    margin: 15px;
+    font-family: sans-serif;
+    font-size: 14px;
+`;
+const ButtonLink = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.a`
+    padding: 10px 30px ;
+    border: none;
+    background: orange;
+    font-family: sans-serif;
+    font-size: 14px;
+`;
+const Console = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.ul`
+    background: #16103a;
+    min-height: 500px;
+    max-height: 1024px;
+    overflow: scroll;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+`;
+const LineItem = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.li`
+    font-size: 10px;
+    color: #fff;
+    list-style-type: none;
+    font-family: monospace;
+    padding: 0;
+`;
 /* harmony default export */ __webpack_exports__["default"] = (Running);
 
 /***/ }),
@@ -1059,7 +1095,7 @@ const Page = props => __jsx("div", {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*********************************!*\
   !*** multi ./pages/running.tsx ***!
   \*********************************/
@@ -1200,6 +1236,17 @@ module.exports = require("prop-types-exact");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "styled-components":
+/*!************************************!*\
+  !*** external "styled-components" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("styled-components");
 
 /***/ }),
 
