@@ -4,7 +4,7 @@ import Timer from "../components/Timer";
 import MileCounter from "../components/MileCounter";
 import { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
 import styled from "styled-components";
-
+import { computeDistanceBetween, LatLng } from "spherical-geometry-js";
 
 
 const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => void) => void = (arr, callback) => {
@@ -12,12 +12,13 @@ const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => voi
     let response = null;
     var options = {
         enableHighAccuracy: true,
-        timeout: 1000,
+        timeout: 5000,
         maximumAge: 0
     };
 
     function success(pos: any) {
         let crd: Coordinates = pos.coords;
+        console.log(crd);
         response = {
             latitude: crd.latitude,
             longitude: crd.longitude,
@@ -106,19 +107,29 @@ const Running = () => {
     const [isRunning, setIsRunning] = useState(true);
     const [duration, setDuration]  = useState(0);
     const [speed, setSpeed] = useState(0);
+    const [distance, setDistance] = useState(0);
+
     useInterval(() => {
         if(isRunning) {
             getCoordinates(coordinates, setCoordinates);
-            const currentTime = coordinates[coordinates.length-1] && coordinates[coordinates.length-1].utc;
+            const current = coordinates[coordinates.length-1] && coordinates[coordinates.length-1]
+            const previous = coordinates[coordinates.length-2] && coordinates[coordinates.length-2]
+
+            const currentTime = current && current.utc;
             if(currentTime) {
                 setDuration((currentTime - startTime) / 1000);
             }
 
-            const currentSpeed = coordinates[coordinates.length-1] && coordinates[coordinates.length-1].speed;
+            const currentSpeed = current && current.speed;
             if(currentSpeed){
                 setSpeed(currentSpeed);
             }
-            console.log(coordinates)
+
+            if(current && previous){
+                const currentDistance = computeDistanceBetween(new LatLng(current.latitude, current.longitude), new LatLng(previous.latitude, previous.longitude));
+                setDistance(distance + currentDistance);
+
+            }
            
             //console.log(coordinates);
 
@@ -133,6 +144,7 @@ const Running = () => {
             <MileCounter />
             <Timer time={duration}/>
             <p><strong>Speed: </strong>{speed}</p>
+            <p><strong>Distance: </strong>{distance}</p>
             <StartStop isRunning={isRunning} toggle={setIsRunning}/>
             <Link href="/finished"><ButtonLink>Stop</ButtonLink></Link>
             <Console>

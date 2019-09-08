@@ -21,6 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Timer */ "./components/Timer.tsx");
 /* harmony import */ var _components_MileCounter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/MileCounter */ "./components/MileCounter.tsx");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! spherical-geometry-js */ "./node_modules/spherical-geometry-js/src/index.js");
 
 
 
@@ -75,16 +76,18 @@ function _templateObject() {
 
 
 
+
 var getCoordinates = function getCoordinates(arr, callback) {
   var response = null;
   var options = {
     enableHighAccuracy: true,
-    timeout: 1000,
+    timeout: 5000,
     maximumAge: 0
   };
 
   function success(pos) {
     var crd = pos.coords;
+    console.log(crd);
     response = {
       latitude: crd.latitude,
       longitude: crd.longitude,
@@ -129,7 +132,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 80
     },
     __self: this
   }, "Pause") : __jsx(Button, {
@@ -138,7 +141,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 81
     },
     __self: this
   }, "Start");
@@ -184,28 +187,38 @@ var Running = function Running() {
       speed = _useState4[0],
       setSpeed = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
+      distance = _useState5[0],
+      setDistance = _useState5[1];
+
   useInterval(function () {
     if (isRunning) {
       getCoordinates(coordinates, setCoordinates);
-      var currentTime = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1].utc;
+      var current = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1];
+      var previous = coordinates[coordinates.length - 2] && coordinates[coordinates.length - 2];
+      var currentTime = current && current.utc;
 
       if (currentTime) {
         setDuration((currentTime - startTime) / 1000);
       }
 
-      var currentSpeed = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1].speed;
+      var currentSpeed = current && current.speed;
 
       if (currentSpeed) {
         setSpeed(currentSpeed);
       }
 
-      console.log(coordinates); //console.log(coordinates);
+      if (current && previous) {
+        var currentDistance = Object(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["computeDistanceBetween"])(new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["LatLng"](current.latitude, current.longitude), new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["LatLng"](previous.latitude, previous.longitude));
+        setDistance(distance + currentDistance);
+      } //console.log(coordinates);
+
     }
   }, 1000);
   return __jsx(_templates_Page__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 142
     },
     __self: this
   }, __jsx("h1", {
@@ -214,59 +227,71 @@ var Running = function Running() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 132
+      lineNumber: 143
     },
     __self: this
   }, "Run!"), __jsx(_components_MileCounter__WEBPACK_IMPORTED_MODULE_7__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 133
+      lineNumber: 144
     },
     __self: this
   }), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_6__["default"], {
     time: duration,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 134
+      lineNumber: 145
     },
     __self: this
   }), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 146
     },
     __self: this
   }, __jsx("strong", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 146
     },
     __self: this
-  }, "Speed: "), speed), __jsx(StartStop, {
+  }, "Speed: "), speed), __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: this
+  }, __jsx("strong", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: this
+  }, "Distance: "), distance), __jsx(StartStop, {
     isRunning: isRunning,
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 136
+      lineNumber: 148
     },
     __self: this
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 149
     },
     __self: this
   }, __jsx(ButtonLink, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 149
     },
     __self: this
   }, "Stop")), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 138
+      lineNumber: 150
     },
     __self: this
   }, coordinates.map(function (x, i) {
@@ -275,10 +300,10 @@ var Running = function Running() {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 142
+        lineNumber: 154
       },
       __self: this
-    }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed);
+    }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");
   })));
 };
 
@@ -291,4 +316,4 @@ var LineItem = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].li(_tem
 /***/ })
 
 })
-//# sourceMappingURL=running.js.6228589213ebe70bebd3.hot-update.js.map
+//# sourceMappingURL=running.js.78494840d5571bc7bccc.hot-update.js.map

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -864,6 +864,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MileCounter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/MileCounter */ "./components/MileCounter.tsx");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! spherical-geometry-js */ "spherical-geometry-js");
+/* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_7__);
 
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.tsx";
 
@@ -875,16 +877,18 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
+
 const getCoordinates = (arr, callback) => {
   let response = null;
   var options = {
     enableHighAccuracy: true,
-    timeout: 1000,
+    timeout: 5000,
     maximumAge: 0
   };
 
   function success(pos) {
     let crd = pos.coords;
+    console.log(crd);
     response = {
       latitude: crd.latitude,
       longitude: crd.longitude,
@@ -929,14 +933,14 @@ const StartStop = props => {
     onClick: () => toggle(false),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 80
     },
     __self: undefined
   }, "Pause") : __jsx(Button, {
     onClick: () => toggle(true),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 81
     },
     __self: undefined
   }, "Start");
@@ -980,28 +984,38 @@ const Running = () => {
     0: speed,
     1: setSpeed
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
+  const {
+    0: distance,
+    1: setDistance
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
   useInterval(() => {
     if (isRunning) {
       getCoordinates(coordinates, setCoordinates);
-      const currentTime = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1].utc;
+      const current = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1];
+      const previous = coordinates[coordinates.length - 2] && coordinates[coordinates.length - 2];
+      const currentTime = current && current.utc;
 
       if (currentTime) {
         setDuration((currentTime - startTime) / 1000);
       }
 
-      const currentSpeed = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1].speed;
+      const currentSpeed = current && current.speed;
 
       if (currentSpeed) {
         setSpeed(currentSpeed);
       }
 
-      console.log(coordinates); //console.log(coordinates);
+      if (current && previous) {
+        const currentDistance = Object(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_7__["computeDistanceBetween"])(new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_7__["LatLng"](current.latitude, current.longitude), new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_7__["LatLng"](previous.latitude, previous.longitude));
+        setDistance(distance + currentDistance);
+      } //console.log(coordinates);
+
     }
   }, 1000);
   return __jsx(_templates_Page__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 142
     },
     __self: undefined
   }, __jsx("h1", {
@@ -1010,59 +1024,71 @@ const Running = () => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 132
+      lineNumber: 143
     },
     __self: undefined
   }, "Run!"), __jsx(_components_MileCounter__WEBPACK_IMPORTED_MODULE_5__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 133
+      lineNumber: 144
     },
     __self: undefined
   }), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_4__["default"], {
     time: duration,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 134
+      lineNumber: 145
     },
     __self: undefined
   }), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 146
     },
     __self: undefined
   }, __jsx("strong", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 146
     },
     __self: undefined
-  }, "Speed: "), speed), __jsx(StartStop, {
+  }, "Speed: "), speed), __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: undefined
+  }, __jsx("strong", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: undefined
+  }, "Distance: "), distance), __jsx(StartStop, {
     isRunning: isRunning,
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 136
+      lineNumber: 148
     },
     __self: undefined
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 149
     },
     __self: undefined
   }, __jsx(ButtonLink, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 149
     },
     __self: undefined
   }, "Stop")), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 138
+      lineNumber: 150
     },
     __self: undefined
   }, coordinates.map((x, i) => {
@@ -1071,7 +1097,7 @@ const Running = () => {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 142
+        lineNumber: 154
       },
       __self: undefined
     }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");
@@ -1139,7 +1165,7 @@ const Page = props => __jsx("div", {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*********************************!*\
   !*** multi ./pages/running.tsx ***!
   \*********************************/
@@ -1280,6 +1306,17 @@ module.exports = require("prop-types-exact");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "spherical-geometry-js":
+/*!****************************************!*\
+  !*** external "spherical-geometry-js" ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("spherical-geometry-js");
 
 /***/ }),
 

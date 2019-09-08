@@ -10297,6 +10297,938 @@ try {
 
 /***/ }),
 
+/***/ "./node_modules/spherical-geometry-js/src/compute-area.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/compute-area.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeArea; });
+/* harmony import */ var _compute_signed_area_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./compute-signed-area.js */ "./node_modules/spherical-geometry-js/src/compute-signed-area.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+
+
+
+/**
+ * Returns the area of a closed path. The computed area uses the same units as
+ * the radius. The radius defaults to the Earth's radius in meters, in which
+ * case the area is in square meters.
+ * @param {LatLng[]} path
+ * @param {number} [radius]
+ * @returns {number} area
+ */
+function computeArea(path, radius = _utils_js__WEBPACK_IMPORTED_MODULE_1__["EARTH_RADIUS"]) {
+    return Math.abs(Object(_compute_signed_area_js__WEBPACK_IMPORTED_MODULE_0__["default"])(path, radius));
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/compute-distance-between.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/compute-distance-between.js ***!
+  \****************************************************************************/
+/*! exports provided: computeDistanceBetweenHelper, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "computeDistanceBetweenHelper", function() { return computeDistanceBetweenHelper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeDistanceBetween; });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+/* harmony import */ var _latlng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./latlng.js */ "./node_modules/spherical-geometry-js/src/latlng.js");
+
+
+
+function computeDistanceBetweenHelper(from, to) {
+    const radFromLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(from.lat());
+    const radFromLng = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(from.lng());
+    const radToLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(to.lat());
+    const radToLng = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(to.lng());
+    return (
+        2 *
+        Math.asin(
+            Math.sqrt(
+                Math.pow(Math.sin((radFromLat - radToLat) / 2), 2) +
+                    Math.cos(radFromLat) *
+                        Math.cos(radToLat) *
+                        Math.pow(Math.sin((radFromLng - radToLng) / 2), 2)
+            )
+        )
+    );
+}
+
+/**
+ * Returns the distance, in meters, between to LatLngs. You can optionally
+ * specify a custom radius. The radius defaults to the radius of the Earth.
+ * @param {LatLng} from
+ * @param {LatLng} to
+ * @param {number} [radius]
+ * @returns {number} distance
+ */
+function computeDistanceBetween(
+    from,
+    to,
+    radius = _utils_js__WEBPACK_IMPORTED_MODULE_0__["EARTH_RADIUS"]
+) {
+    from = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_1__["convert"])(from);
+    to = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_1__["convert"])(to);
+    return computeDistanceBetweenHelper(from, to) * radius;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/compute-heading.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/compute-heading.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeHeading; });
+/* harmony import */ var _latlng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./latlng.js */ "./node_modules/spherical-geometry-js/src/latlng.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+
+
+
+function fmod(angle, start, end) {
+    end -= start;
+    return ((((angle - start) % end) + end) % end) + start;
+}
+
+/**
+ * Returns the heading from one LatLng to another LatLng. Headings are expressed
+ * in degrees clockwise from North within the range [-180, 180).
+ * @param {LatLng} from
+ * @param {LatLng} to
+ * @returns {number}
+ */
+function computeHeading(from, to) {
+    from = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_0__["convert"])(from);
+    to = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_0__["convert"])(to);
+
+    const fromLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_1__["toRadians"])(from.lat());
+    const toLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_1__["toRadians"])(to.lat());
+    const deltaLng = Object(_utils_js__WEBPACK_IMPORTED_MODULE_1__["toRadians"])(to.lng()) - Object(_utils_js__WEBPACK_IMPORTED_MODULE_1__["toRadians"])(from.lng());
+
+    const angle = Object(_utils_js__WEBPACK_IMPORTED_MODULE_1__["toDegrees"])(
+        Math.atan2(
+            Math.sin(deltaLng) * Math.cos(toLat),
+            Math.cos(fromLat) * Math.sin(toLat) -
+                Math.sin(fromLat) * Math.cos(toLat) * Math.cos(deltaLng)
+        )
+    );
+
+    return fmod(angle, -180, 180);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/compute-length.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/compute-length.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeLength; });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+/* harmony import */ var _compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./compute-distance-between.js */ "./node_modules/spherical-geometry-js/src/compute-distance-between.js");
+
+
+
+/**
+ * Returns the length of the given path.
+ * @param {LatLng[]} path
+ * @param {number} [radius]
+ * @returns {number}
+ */
+function computeLength(path, radius = _utils_js__WEBPACK_IMPORTED_MODULE_0__["EARTH_RADIUS"]) {
+    let length = 0;
+    for (let i = 0; i < path.length - 1; i++)
+        length += Object(_compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__["default"])(path[i], path[i + 1], radius);
+    return length;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/compute-offset-origin.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/compute-offset-origin.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeOffsetOrigin; });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+/* harmony import */ var _latlng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./latlng.js */ "./node_modules/spherical-geometry-js/src/latlng.js");
+
+
+
+/**
+ * Returns the location of origin when provided with a LatLng destination,
+ * meters travelled and original heading. Headings are expressed in degrees
+ * clockwise from North. This function returns null when no solution is
+ * available.
+ * @todo
+ * @param {LatLng} to
+ * @param {number} distance
+ * @param {number} heading
+ * @param {number} [radius]
+ * @returns {LatLng}
+ */
+function computeOffsetOrigin(
+    to,
+    distance,
+    heading,
+    radius = _utils_js__WEBPACK_IMPORTED_MODULE_0__["EARTH_RADIUS"]
+) {
+    to = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_1__["convert"])(to);
+    distance /= radius;
+    heading = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(heading);
+
+    const quarterRadian = Math.PI / 2;
+    const toLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(to.lat());
+    const toLng = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(to.lng());
+
+    const cosDistance = Math.cos(distance);
+    const sinDistance = Math.sin(distance);
+    const lngHeading = Math.cos(heading);
+    const latHeading = Math.sin(heading);
+    const lngSinHeading = sinDistance * lngHeading;
+    const latSinHeading = sinDistance * latHeading;
+    const sinToLat = Math.sin(toLat);
+
+    const lngSinHeadingSquared = lngSinHeading * lngSinHeading;
+    const cosDistanceSquared = cosDistance * cosDistance;
+    // A function to complex I had more trouble with variable names
+    const lotsOfMathSquared =
+        lngSinHeadingSquared * cosDistanceSquared +
+        cosDistanceSquared * cosDistanceSquared -
+        cosDistanceSquared * sinToLat * sinToLat;
+    if (0 > lotsOfMathSquared) return null;
+    const lotsOfMath = Math.sqrt(lotsOfMathSquared);
+
+    const distByLng = cosDistanceSquared + lngSinHeadingSquared;
+    const moreMath = (lngSinHeading * sinToLat + lotsOfMath) / distByLng;
+    const evenMoreMath = (sinToLat - lngSinHeading * moreMath) / cosDistance;
+    let latRadian = Math.atan2(evenMoreMath, moreMath);
+    if (latRadian < -quarterRadian || latRadian > quarterRadian) {
+        latRadian = lngSinHeading * sinToLat - lotsOfMath;
+        latRadian = Math.atan2(evenMoreMath, latRadian / distByLng);
+    }
+    if (latRadian < -quarterRadian || latRadian > quarterRadian) return null;
+
+    return new _latlng_js__WEBPACK_IMPORTED_MODULE_1__["default"](
+        Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toDegrees"])(latRadian),
+        Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toDegrees"])(
+            toLng -
+                Math.atan2(
+                    latSinHeading,
+                    cosDistance * Math.cos(latRadian) -
+                        lngSinHeading * Math.sin(latRadian)
+                )
+        )
+    );
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/compute-offset.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/compute-offset.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeOffset; });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+/* harmony import */ var _latlng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./latlng.js */ "./node_modules/spherical-geometry-js/src/latlng.js");
+
+
+
+/**
+ * Returns the LatLng resulting from moving a distance from an origin in the
+ * specified heading (expressed in degrees clockwise from north).
+ * @param {LatLng} from
+ * @param {number} distance
+ * @param {number} heading
+ * @param {number} [radius]
+ * @returns {LatLng}
+ */
+function computeOffset(
+    from,
+    distance,
+    heading,
+    radius = _utils_js__WEBPACK_IMPORTED_MODULE_0__["EARTH_RADIUS"]
+) {
+    from = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_1__["convert"])(from);
+    distance /= radius;
+    heading = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(heading);
+
+    const fromLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(from.lat());
+    const cosDistance = Math.cos(distance);
+    const sinDistance = Math.sin(distance);
+    const sinFromLat = Math.sin(fromLat);
+    const cosFromLat = Math.cos(fromLat);
+    const sc =
+        cosDistance * sinFromLat + sinDistance * cosFromLat * Math.cos(heading);
+
+    return new _latlng_js__WEBPACK_IMPORTED_MODULE_1__["default"](
+        Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toDegrees"])(Math.asin(sc)),
+        Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toDegrees"])(
+            Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(from.lng()) +
+                Math.atan2(
+                    sinDistance * cosFromLat * Math.sin(heading),
+                    cosDistance - sinFromLat * sc
+                )
+        )
+    );
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/compute-signed-area.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/compute-signed-area.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return computeSignedArea; });
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+/* harmony import */ var _compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./compute-distance-between.js */ "./node_modules/spherical-geometry-js/src/compute-distance-between.js");
+/* harmony import */ var _latlng_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./latlng.js */ "./node_modules/spherical-geometry-js/src/latlng.js");
+
+
+
+
+function sphericalExcess(a, b, c) {
+    const polygon = [a, b, c, a];
+    const distances = [];
+    let sumOfDistances = 0;
+    for (let i = 0; i < 3; i++) {
+        distances[i] = Object(_compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__["computeDistanceBetweenHelper"])(polygon[i], polygon[i + 1]);
+        sumOfDistances += distances[i];
+    }
+
+    const semiPerimeter = sumOfDistances / 2;
+    let tan = Math.tan(semiPerimeter / 2);
+    for (let i = 0; i < 3; i++) {
+        tan *= Math.tan((semiPerimeter - distances[i]) / 2);
+    }
+    return 4 * Math.atan(Math.sqrt(Math.abs(tan)));
+}
+
+function sphericalSign(a, b, c) {
+    const matrix = [a, b, c].map(point => {
+        const lat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(point.lat());
+        const lng = Object(_utils_js__WEBPACK_IMPORTED_MODULE_0__["toRadians"])(point.lng());
+        return [
+            Math.cos(lat) * Math.cos(lng),
+            Math.cos(lat) * Math.sin(lng),
+            Math.sin(lat),
+        ];
+    });
+
+    return 0 <
+        matrix[0][0] * matrix[1][1] * matrix[2][2] +
+            matrix[1][0] * matrix[2][1] * matrix[0][2] +
+            matrix[2][0] * matrix[0][1] * matrix[1][2] -
+            matrix[0][0] * matrix[2][1] * matrix[1][2] -
+            matrix[1][0] * matrix[0][1] * matrix[2][2] -
+            matrix[2][0] * matrix[1][1] * matrix[0][2]
+        ? 1
+        : -1;
+}
+
+function computeSphericalExcess(a, b, c) {
+    return sphericalExcess(a, b, c) * sphericalSign(a, b, c);
+}
+
+/**
+ * Returns the signed area of a closed path. The signed area may be used to
+ * determine the orientation of the path. The computed area uses the same units
+ * as the radius. The radius defaults to the Earth's radius in meters, in which
+ * case the area is in square meters.
+ * @param {LatLng[]} loop
+ * @param {number} [radius]
+ * @returns {number}
+ */
+function computeSignedArea(loop, radius = _utils_js__WEBPACK_IMPORTED_MODULE_0__["EARTH_RADIUS"]) {
+    if (loop.length < 3) return 0;
+    loop = loop.map(v => Object(_latlng_js__WEBPACK_IMPORTED_MODULE_2__["convert"])(v));
+
+    let total = 0;
+    for (var i = 1; i < loop.length - 1; i++) {
+        total += computeSphericalExcess(loop[0], loop[i], loop[i + 1]);
+    }
+    return total * radius * radius;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/index.js ***!
+  \*********************************************************/
+/*! exports provided: computeArea, computeDistanceBetween, computeHeading, computeLength, computeOffset, computeOffsetOrigin, computeSignedArea, interpolate, LatLng, convertLatLng, equalLatLngs, LatLngBounds, EARTH_RADIUS, toDegrees, toRadians */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _compute_area_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./compute-area.js */ "./node_modules/spherical-geometry-js/src/compute-area.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "computeArea", function() { return _compute_area_js__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./compute-distance-between.js */ "./node_modules/spherical-geometry-js/src/compute-distance-between.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "computeDistanceBetween", function() { return _compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _compute_heading_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./compute-heading.js */ "./node_modules/spherical-geometry-js/src/compute-heading.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "computeHeading", function() { return _compute_heading_js__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _compute_length_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./compute-length.js */ "./node_modules/spherical-geometry-js/src/compute-length.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "computeLength", function() { return _compute_length_js__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _compute_offset_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./compute-offset.js */ "./node_modules/spherical-geometry-js/src/compute-offset.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "computeOffset", function() { return _compute_offset_js__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _compute_offset_origin_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./compute-offset-origin.js */ "./node_modules/spherical-geometry-js/src/compute-offset-origin.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "computeOffsetOrigin", function() { return _compute_offset_origin_js__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+/* harmony import */ var _compute_signed_area_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./compute-signed-area.js */ "./node_modules/spherical-geometry-js/src/compute-signed-area.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "computeSignedArea", function() { return _compute_signed_area_js__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+
+/* harmony import */ var _interpolate_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./interpolate.js */ "./node_modules/spherical-geometry-js/src/interpolate.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "interpolate", function() { return _interpolate_js__WEBPACK_IMPORTED_MODULE_7__["default"]; });
+
+/* harmony import */ var _latlng_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./latlng.js */ "./node_modules/spherical-geometry-js/src/latlng.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LatLng", function() { return _latlng_js__WEBPACK_IMPORTED_MODULE_8__["default"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "convertLatLng", function() { return _latlng_js__WEBPACK_IMPORTED_MODULE_8__["convert"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "equalLatLngs", function() { return _latlng_js__WEBPACK_IMPORTED_MODULE_8__["equals"]; });
+
+/* harmony import */ var _latlng_bounds_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./latlng-bounds.js */ "./node_modules/spherical-geometry-js/src/latlng-bounds.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LatLngBounds", function() { return _latlng_bounds_js__WEBPACK_IMPORTED_MODULE_9__["default"]; });
+
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EARTH_RADIUS", function() { return _utils_js__WEBPACK_IMPORTED_MODULE_10__["EARTH_RADIUS"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "toDegrees", function() { return _utils_js__WEBPACK_IMPORTED_MODULE_10__["toDegrees"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "toRadians", function() { return _utils_js__WEBPACK_IMPORTED_MODULE_10__["toRadians"]; });
+
+/**
+ * Spherical Geometry Library v1.4.0
+ * This code is a port of some classes from the Google Maps Javascript API
+ * @module spherical-geometry
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/interpolate.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/interpolate.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return interpolate; });
+/* harmony import */ var _latlng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./latlng.js */ "./node_modules/spherical-geometry-js/src/latlng.js");
+/* harmony import */ var _compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./compute-distance-between.js */ "./node_modules/spherical-geometry-js/src/compute-distance-between.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ "./node_modules/spherical-geometry-js/src/utils.js");
+
+
+
+
+/**
+ * Returns the LatLng which lies the given fraction of the way between the
+ * origin LatLng and the destination LatLng.
+ * @param {LatLng} from
+ * @param {LatLng} to
+ * @param {number} fraction
+ * @returns {LatLng}
+ */
+function interpolate(from, to, fraction) {
+    from = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_0__["convert"])(from);
+    to = Object(_latlng_js__WEBPACK_IMPORTED_MODULE_0__["convert"])(to);
+    const radFromLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_2__["toRadians"])(from.lat()),
+        radFromLng = Object(_utils_js__WEBPACK_IMPORTED_MODULE_2__["toRadians"])(from.lng()),
+        radToLat = Object(_utils_js__WEBPACK_IMPORTED_MODULE_2__["toRadians"])(to.lat()),
+        radToLng = Object(_utils_js__WEBPACK_IMPORTED_MODULE_2__["toRadians"])(to.lng()),
+        cosFromLat = Math.cos(radFromLat),
+        cosToLat = Math.cos(radToLat);
+
+    const radDist = Object(_compute_distance_between_js__WEBPACK_IMPORTED_MODULE_1__["computeDistanceBetweenHelper"])(from, to);
+    const sinRadDist = Math.sin(radDist);
+
+    if (1e-6 > sinRadDist) return from;
+
+    const a = Math.sin((1 - fraction) * radDist) / sinRadDist;
+    const b = Math.sin(fraction * radDist) / sinRadDist;
+    const c =
+        a * cosFromLat * Math.cos(radFromLng) +
+        b * cosToLat * Math.cos(radToLng);
+    const d =
+        a * cosFromLat * Math.sin(radFromLng) +
+        b * cosToLat * Math.sin(radToLng);
+
+    return new _latlng_js__WEBPACK_IMPORTED_MODULE_0__["default"](
+        Object(_utils_js__WEBPACK_IMPORTED_MODULE_2__["toDegrees"])(
+            Math.atan2(
+                a * Math.sin(radFromLat) + b * Math.sin(radToLat),
+                Math.sqrt(Math.pow(c, 2) + Math.pow(d, 2))
+            )
+        ),
+        Object(_utils_js__WEBPACK_IMPORTED_MODULE_2__["toDegrees"])(Math.atan2(d, c))
+    );
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/latlng-bounds.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/latlng-bounds.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LatLngBounds; });
+/* harmony import */ var _latlng__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./latlng */ "./node_modules/spherical-geometry-js/src/latlng.js");
+
+
+class LatLngBounds {
+    /**
+     * @param {LatLngLike} [sw] southwest
+     * @param {LatLngLike} [ne] northeast
+     */
+    constructor(sw, ne) {
+        this.sw = Object(_latlng__WEBPACK_IMPORTED_MODULE_0__["convert"])(sw || [1, 180]);
+        if (!ne) {
+            ne = sw ? sw : [-1, -180];
+        }
+        this.ne = Object(_latlng__WEBPACK_IMPORTED_MODULE_0__["convert"])(ne);
+    }
+
+    /**
+     * Check if point is within bounds.
+     * @param {LatLngLike} latlng
+     * @returns {boolean}
+     */
+    contains(latlng) {
+        const [lng, lat] = Object(_latlng__WEBPACK_IMPORTED_MODULE_0__["convert"])(latlng);
+        return (
+            this.sw.lat() <= lat &&
+            lat <= this.ne.lat() &&
+            this.sw.lng() <= lng &&
+            lng <= this.ne.lng()
+        );
+    }
+
+    /**
+     * Check if two bounds are equal.
+     * @param {LatLngBounds | LatLngBoundsLiteral} other
+     * @returns {boolean}
+     */
+    equals(other) {
+        if (!other) {
+            return false;
+        } else if (other instanceof LatLngBounds) {
+            return (
+                Object(_latlng__WEBPACK_IMPORTED_MODULE_0__["equals"])(this.sw, other.getSouthWest()) &&
+                Object(_latlng__WEBPACK_IMPORTED_MODULE_0__["equals"])(this.ne, other.getNorthEast())
+            );
+        } else if (
+            [other.north, other.south, other.east, other.west].every(
+                n => typeof n === 'number'
+            )
+        ) {
+            const literal = this.toJSON();
+            return (
+                other.north === literal.north &&
+                other.south === literal.south &&
+                other.east === literal.east &&
+                other.west === literal.west
+            );
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Mutate the bounds to include the given point.
+     * @param {LatLngLike} point
+     * @returns {LatLngBounds}
+     */
+    extend(point) {
+        point = Object(_latlng__WEBPACK_IMPORTED_MODULE_0__["convert"])(point);
+        this.sw = new _latlng__WEBPACK_IMPORTED_MODULE_0__["default"](
+            Math.min(this.sw.lat(), point.lat()),
+            Math.min(this.sw.lng(), point.lng())
+        );
+        this.ne = new _latlng__WEBPACK_IMPORTED_MODULE_0__["default"](
+            Math.max(this.ne.lat(), point.lat()),
+            Math.max(this.ne.lng(), point.lng())
+        );
+
+        return this;
+    }
+
+    /**
+     * Computes and returns the center point of the bounds.
+     * @returns {LatLng}
+     */
+    getCenter() {
+        return new _latlng__WEBPACK_IMPORTED_MODULE_0__["default"](
+            (this.sw.lat() + this.ne.lat()) / 2,
+            (this.sw.lng() + this.ne.lng()) / 2
+        );
+    }
+
+    /** @returns {LatLng} */
+    getNorthEast() {
+        return this.ne;
+    }
+
+    /** @returns {LatLng} */
+    getSouthWest() {
+        return this.sw;
+    }
+
+    /**
+     * Check if two bounds intersect at all.
+     * @param {LatLngBounds} other
+     * @returns {boolean}
+     */
+    intersects(other) {
+        return (
+            this.contains(other.getSouthWest()) ||
+            this.contains(other.getNorthEast())
+        );
+    }
+
+    /**
+     * Return true if the southwest and northeast corners are equal.
+     */
+    isEmpty() {
+        return Object(_latlng__WEBPACK_IMPORTED_MODULE_0__["equals"])(this.sw, this.ne);
+    }
+
+    /**
+     * Convert into a LatLngBoundsLiteral.
+     */
+    toJSON() {
+        return {
+            east: this.ne.lng(),
+            north: this.ne.lat(),
+            south: this.sw.lat(),
+            west: this.sw.lng(),
+        };
+    }
+
+    toSpan() {
+        throw new Error('Unsupported');
+    }
+
+    toString() {
+        return `(${this.sw}, ${this.ne})`;
+    }
+
+    toUrlValue(precision) {
+        return (
+            this.sw.toUrlValue(precision) + ',' + this.ne.toUrlValue(precision)
+        );
+    }
+
+    /**
+     * Mutate the bounds to include the other bounds.
+     * @param {LatLngBounds} bounds
+     * @returns {LatLngBounds}
+     */
+    union(other) {
+        if (!(other instanceof LatLngBounds)) {
+            throw new TypeError(`${other} is not a LatLngBounds`);
+        }
+        return this.extend(other.getSouthWest()).extend(other.getNorthEast());
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/latlng.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/latlng.js ***!
+  \**********************************************************/
+/*! exports provided: convert, equals, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convert", function() { return convert; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LatLng; });
+const LAT = 'latitude';
+const LNG = 'longitude';
+
+/**
+ * Converts an object into a LatLng. Tries a few different methods:
+ * 1. If instanceof LatLng, clone and return the object
+ * 2. If it has 'lat' and 'lng' properties...
+ *    2a. if the properties are functions (like Google LatLngs),
+ *        use the lat() and lng() values as lat and lng
+ *    2b. otherwise get lat and lng, parse them as floats and try them
+ * 3. If it has 'lat' and *'long'* properties,
+ *    parse them as floats and return a LatLng
+ * 4. If it has 'lat' and *'lon'* properties,
+ *    parse them as floats and return a LatLng
+ * 5. If it has 'latitude' and 'longitude' properties,
+ *    parse them as floats and return a LatLng
+ * 6. If it has number values for 0 and 1, use 1 as latitude and 0
+ *    as longitude.
+ * 7. If it has x and y properties, try using y as latitude and x and
+ *    longitude.
+ * @param {any} like
+ * @returns {LatLng}
+ */
+function convert(like) {
+    if (like instanceof LatLng) {
+        return new LatLng(like[LAT], like[LNG]);
+    } else if ('lat' in like && 'lng' in like) {
+        if (typeof like.lat == 'function' && typeof like.lng == 'function') {
+            return new LatLng(like.lat(), like.lng());
+        } else {
+            return new LatLng(parseFloat(like.lat), parseFloat(like.lng));
+        }
+    } else if ('lat' in like && 'long' in like) {
+        return new LatLng(parseFloat(like.lat), parseFloat(like.long));
+    } else if ('lat' in like && 'lon' in like) {
+        return new LatLng(parseFloat(like.lat), parseFloat(like.lon));
+    } else if ('latitude' in like && 'longitude' in like) {
+        return new LatLng(
+            parseFloat(like.latitude),
+            parseFloat(like.longitude)
+        );
+    } else if (typeof like[0] === 'number' && typeof like[1] === 'number') {
+        return new LatLng(like[1], like[0]);
+    } else if ('x' in like && 'y' in like) {
+        return new LatLng(parseFloat(like.y), parseFloat(like.x));
+    } else {
+        throw new TypeError(`Cannot convert ${like} to LatLng`);
+    }
+}
+
+/**
+ * Comparison function
+ * @param {LatLng} one
+ * @param {LatLng} two
+ * @returns {boolean}
+ */
+function equals(one, two) {
+    one = convert(one);
+    two = convert(two);
+    return (
+        Math.abs(one[LAT] - two[LAT]) < Number.EPSILON &&
+        Math.abs(one[LNG] - two[LNG]) < Number.EPSILON
+    );
+}
+
+class LatLng {
+    /**
+     * @param {number} lat
+     * @param {number} lng
+     * @param {boolean} noWrap
+     */
+    constructor(lat, lng, noWrap = false) {
+        lat = parseFloat(lat);
+        lng = parseFloat(lng);
+
+        if (Number.isNaN(lat) || Number.isNaN(lng)) {
+            throw TypeError('lat or lng are not numbers');
+        }
+
+        if (!noWrap) {
+            //Constrain lat to -90, 90
+            lat = Math.min(Math.max(lat, -90), 90);
+            //Wrap lng using modulo
+            lng = lng == 180 ? lng : ((((lng + 180) % 360) + 360) % 360) - 180;
+        }
+
+        Object.defineProperty(this, LAT, { value: lat });
+        Object.defineProperty(this, LNG, { value: lng });
+        this.length = 2;
+
+        Object.freeze(this);
+    }
+
+    /**
+     * Comparison function
+     * @param {LatLng} other
+     * @returns {boolean}
+     */
+    equals(other) {
+        return equals(this, other);
+    }
+
+    /**
+     * Returns the latitude in degrees.
+     * (I'd rather use getters but this is for consistency)
+     * @returns {number}
+     */
+    lat() {
+        return this[LAT];
+    }
+
+    /**
+     * Returns the longitude in degrees.
+     * (I'd rather use getters but this is for consistency)
+     * @returns {number}
+     */
+    lng() {
+        return this[LNG];
+    }
+
+    /** @type {number} alias for lng */
+    get x() {
+        return this[LNG];
+    }
+    /** @type {number} alias for lat */
+    get y() {
+        return this[LAT];
+    }
+    /** @type {number} alias for lng */
+    get 0() {
+        return this[LNG];
+    }
+    /** @type {number} alias for lat */
+    get 1() {
+        return this[LAT];
+    }
+    /** @type {number} alias for lng */
+    get long() {
+        return this[LNG];
+    }
+    /** @type {number} alias for lng */
+    get lon() {
+        return this[LNG];
+    }
+
+    /**
+     * Converts to JSON representation. This function is intended to be used via
+     * JSON.stringify.
+     * @returns {LatLngLiteral}
+     */
+    toJSON() {
+        return { lat: this[LAT], lng: this[LNG] };
+    }
+
+    /**
+     * Converts to string representation.
+     * @returns {string}
+     */
+    toString() {
+        return `(${this[LAT]}, ${this[LNG]})`;
+    }
+
+    /**
+     * Returns a string of the form "lat,lng" for this LatLng. We round the
+     * lat/lng values to 6 decimal places by default.
+     * @param {number} [precision=6]
+     * @returns {string}
+     */
+    toUrlValue(precision = 6) {
+        precision = parseInt(precision);
+        return (
+            parseFloat(this[LAT].toFixed(precision)) +
+            ',' +
+            parseFloat(this[LNG].toFixed(precision))
+        );
+    }
+
+    [Symbol.iterator]() {
+        let i = 0;
+        return {
+            next: () => {
+                if (i < this.length) {
+                    return { value: this[i++], done: false };
+                } else {
+                    return { done: true };
+                }
+            },
+            [Symbol.iterator]() {
+                return this;
+            },
+        };
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/spherical-geometry-js/src/utils.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/spherical-geometry-js/src/utils.js ***!
+  \*********************************************************/
+/*! exports provided: EARTH_RADIUS, toDegrees, toRadians */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EARTH_RADIUS", function() { return EARTH_RADIUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toDegrees", function() { return toDegrees; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toRadians", function() { return toRadians; });
+/** @type {number} Earth's radius (at the Equator) of 6378137 meters. */
+const EARTH_RADIUS = 6378137;
+
+function toDegrees(radians) {
+    return (radians * 180) / Math.PI;
+}
+
+function toRadians(angleDegrees) {
+    return (angleDegrees * Math.PI) / 180.0;
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/styled-components/dist/styled-components.browser.esm.js":
 /*!******************************************************************************!*\
   !*** ./node_modules/styled-components/dist/styled-components.browser.esm.js ***!
@@ -13745,6 +14677,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Timer */ "./components/Timer.tsx");
 /* harmony import */ var _components_MileCounter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/MileCounter */ "./components/MileCounter.tsx");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! spherical-geometry-js */ "./node_modules/spherical-geometry-js/src/index.js");
 
 
 
@@ -13799,16 +14732,18 @@ function _templateObject() {
 
 
 
+
 var getCoordinates = function getCoordinates(arr, callback) {
   var response = null;
   var options = {
     enableHighAccuracy: true,
-    timeout: 1000,
+    timeout: 5000,
     maximumAge: 0
   };
 
   function success(pos) {
     var crd = pos.coords;
+    console.log(crd);
     response = {
       latitude: crd.latitude,
       longitude: crd.longitude,
@@ -13853,7 +14788,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 80
     },
     __self: this
   }, "Pause") : __jsx(Button, {
@@ -13862,7 +14797,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 81
     },
     __self: this
   }, "Start");
@@ -13908,28 +14843,38 @@ var Running = function Running() {
       speed = _useState4[0],
       setSpeed = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
+      distance = _useState5[0],
+      setDistance = _useState5[1];
+
   useInterval(function () {
     if (isRunning) {
       getCoordinates(coordinates, setCoordinates);
-      var currentTime = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1].utc;
+      var current = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1];
+      var previous = coordinates[coordinates.length - 2] && coordinates[coordinates.length - 2];
+      var currentTime = current && current.utc;
 
       if (currentTime) {
         setDuration((currentTime - startTime) / 1000);
       }
 
-      var currentSpeed = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1].speed;
+      var currentSpeed = current && current.speed;
 
       if (currentSpeed) {
         setSpeed(currentSpeed);
       }
 
-      console.log(coordinates); //console.log(coordinates);
+      if (current && previous) {
+        var currentDistance = Object(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["computeDistanceBetween"])(new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["LatLng"](current.latitude, current.longitude), new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["LatLng"](previous.latitude, previous.longitude));
+        setDistance(distance + currentDistance);
+      } //console.log(coordinates);
+
     }
   }, 1000);
   return __jsx(_templates_Page__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 142
     },
     __self: this
   }, __jsx("h1", {
@@ -13938,59 +14883,71 @@ var Running = function Running() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 132
+      lineNumber: 143
     },
     __self: this
   }, "Run!"), __jsx(_components_MileCounter__WEBPACK_IMPORTED_MODULE_7__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 133
+      lineNumber: 144
     },
     __self: this
   }), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_6__["default"], {
     time: duration,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 134
+      lineNumber: 145
     },
     __self: this
   }), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 146
     },
     __self: this
   }, __jsx("strong", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 146
     },
     __self: this
-  }, "Speed: "), speed), __jsx(StartStop, {
+  }, "Speed: "), speed), __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: this
+  }, __jsx("strong", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: this
+  }, "Distance: "), distance), __jsx(StartStop, {
     isRunning: isRunning,
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 136
+      lineNumber: 148
     },
     __self: this
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 149
     },
     __self: this
   }, __jsx(ButtonLink, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 149
     },
     __self: this
   }, "Stop")), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 138
+      lineNumber: 150
     },
     __self: this
   }, coordinates.map(function (x, i) {
@@ -13999,7 +14956,7 @@ var Running = function Running() {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 142
+        lineNumber: 154
       },
       __self: this
     }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");
@@ -14043,7 +15000,7 @@ var Page = function Page(props) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!****************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Frunning&absolutePagePath=%2FUsers%2Fnicbovee%2FProjects%2FPrismaDemo%2Ffrontend%2Fpages%2Frunning.tsx ***!
   \****************************************************************************************************************************************************/
@@ -14066,5 +15023,5 @@ module.exports = dll_01f9a3fa864a7b7414d8;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=running.js.map
