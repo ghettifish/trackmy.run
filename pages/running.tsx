@@ -102,6 +102,11 @@ const Running = () => {
             <Timer time={duration}/>
             <StartStop isRunning={isRunning} toggle={setIsRunning}/>
             <Link href="/finished"><a>Stop</a></Link>
+            <ul>
+            {
+                coordinates.map(x => <li key={x.utc}>Lat: {x.lat} | Lng: {x.lng} | UTC: {x.utc}</li>)
+            }
+                </ul>
         </Page>
     )
 }

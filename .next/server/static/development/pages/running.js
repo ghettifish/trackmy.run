@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1012,7 +1012,20 @@ const Running = () => {
       lineNumber: 104
     },
     __self: undefined
-  }, "Stop")));
+  }, "Stop")), __jsx("ul", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 105
+    },
+    __self: undefined
+  }, coordinates.map(x => __jsx("li", {
+    key: x.utc,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 107
+    },
+    __self: undefined
+  }, "Lat: ", x.lat, " | Lng: ", x.lng, " | UTC: ", x.utc))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Running);
@@ -1040,13 +1053,13 @@ const Page = props => __jsx("div", {
     lineNumber: 5
   },
   __self: undefined
-}, "Page Template", props.children);
+}, props.children);
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!*********************************!*\
   !*** multi ./pages/running.tsx ***!
   \*********************************/

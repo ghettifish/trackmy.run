@@ -10486,7 +10486,22 @@ var Running = function Running() {
       lineNumber: 104
     },
     __self: this
-  }, "Stop")));
+  }, "Stop")), __jsx("ul", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 105
+    },
+    __self: this
+  }, coordinates.map(function (x) {
+    return __jsx("li", {
+      key: x.utc,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 107
+      },
+      __self: this
+    }, "Lat: ", x.lat, " | Lng: ", x.lng, " | UTC: ", x.utc);
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Running);
@@ -10515,14 +10530,14 @@ var Page = function Page(props) {
       lineNumber: 5
     },
     __self: this
-  }, "Page Template", props.children);
+  }, props.children);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!****************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Frunning&absolutePagePath=%2FUsers%2Fnicbovee%2FProjects%2FPrismaDemo%2Ffrontend%2Fpages%2Frunning.tsx ***!
   \****************************************************************************************************************************************************/
@@ -10545,5 +10560,5 @@ module.exports = dll_01f9a3fa864a7b7414d8;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=running.js.map

@@ -1,1 +1,0 @@
-{"ast":null,"code":"import withApollo from 'next-with-apollo';\nimport ApolloClient from 'apollo-boost';\nimport { endpoint } from '../config';\nconst client = new ApolloClient({\n  uri: endpoint\n});\n\nfunction createClient({\n  headers\n}) {\n  return client;\n}\n\nexport default withApollo(createClient);","map":null,"metadata":{},"sourceType":"module"}

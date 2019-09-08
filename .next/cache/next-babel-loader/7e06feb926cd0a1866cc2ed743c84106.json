@@ -1,1 +1,0 @@
-{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\n\nconst Page = props => __jsx(\"div\", null, \"Page Template\", props.children);\n\nexport default Page;","map":null,"metadata":{},"sourceType":"module"}
