@@ -130,7 +130,7 @@ const ButtonLink = styled.a`
 const Console = styled.ul`
     background: #16103a;
     min-height: 500px;
-    max-height: 1024px;
+    max-height: 500px;
     overflow: scroll;
     margin-block-start: 0;
     padding-inline-start: 0;
