@@ -88,15 +88,15 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/Distance.tsx":
-/*!*********************************!*\
-  !*** ./components/Distance.tsx ***!
-  \*********************************/
+/***/ "./components/StartButton.tsx":
+/*!************************************!*\
+  !*** ./components/StartButton.tsx ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -104,81 +104,29 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Distance.tsx";
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/StartButton.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-function convertMetersToMiles(meters) {
-  return (meters / 1609.344).toFixed(4);
-}
 
-const Distance = props => __jsx("p", {
+const StartButton = () => __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  href: "/running",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 3
   },
   __self: undefined
-}, __jsx("strong", {
+}, __jsx("a", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 3
   },
   __self: undefined
-}, "Distance: "), convertMetersToMiles(props.meters), " miles");
+}, "Start Run"));
 
-/* harmony default export */ __webpack_exports__["default"] = (Distance);
-
-/***/ }),
-
-/***/ "./components/Timer.tsx":
-/*!******************************!*\
-  !*** ./components/Timer.tsx ***!
-  \******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Timer.tsx";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-const getSeconds = time => time % 60 < 10 ? "0" + (time % 60).toFixed() : (time % 60).toFixed();
-
-const getMinutes = time => Math.floor(time / 60) < 10 ? "0" + (time / 60).toFixed() : (time / 60).toFixed();
-
-const getHours = time => Math.floor(time / 3600) < 10 ? "0" + (time / 3600).toFixed() : (time / 3600).toFixed();
-
-const getTimestamp = time => `${getHours(time)}:${getMinutes(time)}:${getSeconds(time)}`;
-
-const Timer = props => __jsx("p", {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 24
-  },
-  __self: undefined
-}, __jsx("strong", {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 24
-  },
-  __self: undefined
-}, "Time: "), getTimestamp(props.time));
-
-/* harmony default export */ __webpack_exports__["default"] = (Timer);
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/core-js/date/now.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/core-js/date/now.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! core-js/library/fn/date/now */ "core-js/library/fn/date/now");
+/* harmony default export */ __webpack_exports__["default"] = (StartButton);
 
 /***/ }),
 
@@ -847,288 +795,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/running.tsx":
-/*!***************************!*\
-  !*** ./pages/running.tsx ***!
-  \***************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/date/now */ "./node_modules/@babel/runtime-corejs2/core-js/date/now.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _templates_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/Page */ "./templates/Page.tsx");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Timer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Timer */ "./components/Timer.tsx");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! spherical-geometry-js */ "spherical-geometry-js");
-/* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
-
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.tsx";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-
-
-
-
-
-
-
-const getCoordinates = (arr, callback) => {
-  let response = null;
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 1000,
-    maximumAge: 0
-  };
-
-  function success(pos) {
-    let crd = pos.coords;
-    console.log(crd);
-    response = {
-      latitude: crd.latitude,
-      longitude: crd.longitude,
-      accuracy: crd.accuracy,
-      altitude: crd.altitude,
-      altitudeAccuracy: crd.altitudeAccuracy,
-      heading: crd.heading,
-      speed: crd.speed,
-      utc: _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0___default()()
-    };
-    callback([...arr, response]);
-    return;
-  }
-
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-
-  navigator.geolocation.getCurrentPosition(success, error, options);
-};
-
-const sampleData = [{
-  latitude: 39.0067718,
-  longitude: -105.06114945,
-  utc: 1567956461422
-}, {
-  latitude: 39.0069154,
-  longitude: -105.0603721,
-  utc: 1567956490407
-}, {
-  latitude: 38.9993031,
-  longitude: -105.0402898,
-  utc: 1567958139410
-}];
-
-const StartStop = props => {
-  const {
-    isRunning,
-    toggle
-  } = props;
-  return isRunning ? __jsx(Button, {
-    onClick: () => toggle(false),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 81
-    },
-    __self: undefined
-  }, "Pause") : __jsx(Button, {
-    onClick: () => toggle(true),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 82
-    },
-    __self: undefined
-  }, "Start");
-};
-
-function useInterval(callback, delay) {
-  const savedCallback = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])(); // Remember the latest callback.
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    savedCallback.current = callback;
-  }, [callback]); // Set up the interval.
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    function tick() {
-      savedCallback.current();
-    }
-
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
-const startTime = _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0___default()();
-
-const Running = () => {
-  const {
-    0: coordinates,
-    1: setCoordinates
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]);
-  const {
-    0: isRunning,
-    1: setIsRunning
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true);
-  const {
-    0: duration,
-    1: setDuration
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
-  const {
-    0: speed,
-    1: setSpeed
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
-  const {
-    0: distance,
-    1: setDistance
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
-  useInterval(() => {
-    if (isRunning) {
-      getCoordinates(coordinates, setCoordinates);
-      const current = coordinates[coordinates.length - 1] && coordinates[coordinates.length - 1];
-      const previous = coordinates[coordinates.length - 2] && coordinates[coordinates.length - 2];
-      const currentTime = current && current.utc;
-
-      if (currentTime) {
-        setDuration((currentTime - startTime) / 1000);
-      }
-
-      if (current && previous) {
-        const currentDistance = Object(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__["computeDistanceBetween"])(new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__["LatLng"](current.latitude, current.longitude), new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__["LatLng"](previous.latitude, previous.longitude));
-        setSpeed(currentDistance / 1609.344 * 60 * 60);
-        setDistance(distance + currentDistance);
-      } //console.log(coordinates);
-
-    }
-  }, 1000);
-  return __jsx(_templates_Page__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 142
-    },
-    __self: undefined
-  }, __jsx("h1", {
-    style: {
-      fontFamily: "sans-serif"
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 143
-    },
-    __self: undefined
-  }, "Run!"), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    time: duration,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 144
-    },
-    __self: undefined
-  }), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 145
-    },
-    __self: undefined
-  }, __jsx("strong", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 145
-    },
-    __self: undefined
-  }, "Speed: "), speed, " mph"), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    meters: distance,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 146
-    },
-    __self: undefined
-  }), __jsx(StartStop, {
-    isRunning: isRunning,
-    toggle: setIsRunning,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 147
-    },
-    __self: undefined
-  }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
-    href: "/finished",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 148
-    },
-    __self: undefined
-  }, __jsx(ButtonLink, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 148
-    },
-    __self: undefined
-  }, "Stop")), __jsx(Console, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 149
-    },
-    __self: undefined
-  }, coordinates.map((x, i) => {
-    const pointer = coordinates[coordinates.length - 1 - i];
-    return __jsx(LineItem, {
-      key: pointer.utc,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 153
-      },
-      __self: undefined
-    }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");
-  })));
-};
-
-const Button = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.button`
-    padding: 10px 30px ;
-    border: none;
-    background: orange;
-    margin: 15px;
-    font-family: sans-serif;
-    font-size: 14px;
-`;
-const ButtonLink = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.a`
-    padding: 10px 30px ;
-    border: none;
-    background: orange;
-    font-family: sans-serif;
-    font-size: 14px;
-`;
-const Console = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.ul`
-    background: #16103a;
-    min-height: 500px;
-    max-height: 500px;
-    overflow: scroll;
-    margin-block-start: 0;
-    padding-inline-start: 0;
-`;
-const LineItem = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.li`
-    font-size: 8px;
-    color: #fff;
-    list-style-type: none;
-    font-family: monospace;
-    padding: 0;
-`;
-/* harmony default export */ __webpack_exports__["default"] = (Running);
-
-/***/ }),
-
-/***/ "./templates/Page.tsx":
-/*!****************************!*\
-  !*** ./templates/Page.tsx ***!
-  \****************************/
+/***/ "./pages/index.tsx":
+/*!*************************!*\
+  !*** ./pages/index.tsx ***!
+  \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1136,42 +806,62 @@ const LineItem = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.li`
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/templates/Page.tsx";
+/* harmony import */ var _components_StartButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/StartButton */ "./components/StartButton.tsx");
+var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/index.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-const Page = props => __jsx("div", {
+
+const Home = ({
+  userAgent
+}) => __jsx("div", {
   __source: {
     fileName: _jsxFileName,
     lineNumber: 5
   },
   __self: undefined
-}, props.children);
+}, __jsx("h1", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 6
+  },
+  __self: undefined
+}, "Run Tracker"), __jsx(_components_StartButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 7
+  },
+  __self: undefined
+}), __jsx("p", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 8
+  },
+  __self: undefined
+}, "useragent: ", userAgent));
 
-/* harmony default export */ __webpack_exports__["default"] = (Page);
+Home.getInitialProps = async ({
+  req
+}) => {
+  const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent;
+  return {
+    userAgent
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Home);
 
 /***/ }),
 
-/***/ 3:
-/*!*********************************!*\
-  !*** multi ./pages/running.tsx ***!
-  \*********************************/
+/***/ 5:
+/*!*******************************!*\
+  !*** multi ./pages/index.tsx ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.tsx */"./pages/running.tsx");
+module.exports = __webpack_require__(/*! /Users/nicbovee/Projects/PrismaDemo/frontend/pages/index.tsx */"./pages/index.tsx");
 
-
-/***/ }),
-
-/***/ "core-js/library/fn/date/now":
-/*!**********************************************!*\
-  !*** external "core-js/library/fn/date/now" ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("core-js/library/fn/date/now");
 
 /***/ }),
 
@@ -1296,28 +986,6 @@ module.exports = require("react");
 
 /***/ }),
 
-/***/ "spherical-geometry-js":
-/*!****************************************!*\
-  !*** external "spherical-geometry-js" ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("spherical-geometry-js");
-
-/***/ }),
-
-/***/ "styled-components":
-/*!************************************!*\
-  !*** external "styled-components" ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("styled-components");
-
-/***/ }),
-
 /***/ "url":
 /*!**********************!*\
   !*** external "url" ***!
@@ -1330,4 +998,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=running.js.map
+//# sourceMappingURL=index.js.map

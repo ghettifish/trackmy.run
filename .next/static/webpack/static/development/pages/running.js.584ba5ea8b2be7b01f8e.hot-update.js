@@ -22,6 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MileCounter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/MileCounter */ "./components/MileCounter.tsx");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! spherical-geometry-js */ "./node_modules/spherical-geometry-js/src/index.js");
+/* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
 
 
 
@@ -68,6 +69,7 @@ function _templateObject() {
 
   return data;
 }
+
 
 
 
@@ -132,7 +134,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 81
     },
     __self: this
   }, "Pause") : __jsx(Button, {
@@ -141,7 +143,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 82
     },
     __self: this
   }, "Start");
@@ -202,14 +204,9 @@ var Running = function Running() {
         setDuration((currentTime - startTime) / 1000);
       }
 
-      var currentSpeed = current && current.speed;
-
-      if (currentSpeed) {
-        setSpeed(currentSpeed);
-      }
-
       if (current && previous) {
         var currentDistance = Object(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["computeDistanceBetween"])(new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["LatLng"](current.latitude, current.longitude), new spherical_geometry_js__WEBPACK_IMPORTED_MODULE_9__["LatLng"](previous.latitude, previous.longitude));
+        setSpeed(currentDistance / 1609.344 * 60 * 60);
         setDistance(distance + currentDistance);
       } //console.log(coordinates);
 
@@ -255,19 +252,14 @@ var Running = function Running() {
       lineNumber: 146
     },
     __self: this
-  }, "Speed: "), speed), __jsx("p", {
+  }, "Speed: "), speed), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    meters: distance,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 147
     },
     __self: this
-  }, __jsx("strong", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 147
-    },
-    __self: this
-  }, "Distance: "), distance), __jsx(StartStop, {
+  }), __jsx(StartStop, {
     isRunning: isRunning,
     toggle: setIsRunning,
     __source: {
@@ -316,4 +308,4 @@ var LineItem = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].li(_tem
 /***/ })
 
 })
-//# sourceMappingURL=running.js.78494840d5571bc7bccc.hot-update.js.map
+//# sourceMappingURL=running.js.584ba5ea8b2be7b01f8e.hot-update.js.map

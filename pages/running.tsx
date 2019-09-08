@@ -5,6 +5,7 @@ import MileCounter from "../components/MileCounter";
 import { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
 import styled from "styled-components";
 import { computeDistanceBetween, LatLng } from "spherical-geometry-js";
+import Distance from "../components/Distance";
 
 
 const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => void) => void = (arr, callback) => {
@@ -12,7 +13,7 @@ const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => voi
     let response = null;
     var options = {
         enableHighAccuracy: true,
-        timeout: 5000,
+        timeout: 1000,
         maximumAge: 0
     };
 
@@ -120,13 +121,12 @@ const Running = () => {
                 setDuration((currentTime - startTime) / 1000);
             }
 
-            const currentSpeed = current && current.speed;
-            if(currentSpeed){
-                setSpeed(currentSpeed);
-            }
+           
 
             if(current && previous){
                 const currentDistance = computeDistanceBetween(new LatLng(current.latitude, current.longitude), new LatLng(previous.latitude, previous.longitude));
+                setSpeed((currentDistance / 1609.344) * 60 * 60);
+                
                 setDistance(distance + currentDistance);
 
             }
@@ -141,10 +141,9 @@ const Running = () => {
     return (
         <Page>
             <h1 style={{fontFamily: "sans-serif"}}>Run!</h1>
-            <MileCounter />
             <Timer time={duration}/>
-            <p><strong>Speed: </strong>{speed}</p>
-            <p><strong>Distance: </strong>{distance}</p>
+            <p><strong>Speed: </strong>{speed} mph</p>
+            <Distance meters={distance} />
             <StartStop isRunning={isRunning} toggle={setIsRunning}/>
             <Link href="/finished"><ButtonLink>Stop</ButtonLink></Link>
             <Console>
