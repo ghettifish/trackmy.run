@@ -13753,7 +13753,7 @@ var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.t
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
 
 function _templateObject4() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    font-size: 10px;\n    color: #fff;\n    list-style-type: none;\n    font-family: monospace;\n    padding: 0;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    font-size: 8px;\n    color: #fff;\n    list-style-type: none;\n    font-family: monospace;\n    padding: 0;\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -13763,7 +13763,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: #16103a;\n    min-height: 500px;\n    max-height: 1024px;\n    overflow: scroll;\n    margin-block-start: 0;\n    padding-inline-start: 0;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: #16103a;\n    min-height: 500px;\n    max-height: 500px;\n    overflow: scroll;\n    margin-block-start: 0;\n    padding-inline-start: 0;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -13952,15 +13952,16 @@ var Running = function Running() {
       lineNumber: 105
     },
     __self: this
-  }, coordinates.map(function (x) {
+  }, coordinates.map(function (x, i) {
+    var pointer = coordinates[coordinates.length - 1 - i];
     return __jsx(LineItem, {
-      key: x.utc,
+      key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 107
+        lineNumber: 109
       },
       __self: this
-    }, "Lat: ", x.lat, " | Lng: ", x.lng, " | UTC: ", x.utc);
+    }, "Lat: ", pointer.lat, " | Lng: ", pointer.lng, " | UTC: ", pointer.utc);
   })));
 };
 

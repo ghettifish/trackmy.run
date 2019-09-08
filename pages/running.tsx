@@ -104,7 +104,10 @@ const Running = () => {
             <Link href="/finished"><ButtonLink>Stop</ButtonLink></Link>
             <Console>
             {
-                coordinates.map(x => <LineItem key={x.utc}>Lat: {x.lat} | Lng: {x.lng} | UTC: {x.utc}</LineItem>)
+                coordinates.map((x,i) => {
+                    const pointer = coordinates[coordinates.length - 1 -i];
+                    return <LineItem key={pointer.utc}>Lat: {pointer.lat} | Lng: {pointer.lng} | UTC: {pointer.utc}</LineItem>
+                })
             }
             </Console>
         </Page>

@@ -1024,14 +1024,17 @@ const Running = () => {
       lineNumber: 105
     },
     __self: undefined
-  }, coordinates.map(x => __jsx(LineItem, {
-    key: x.utc,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 107
-    },
-    __self: undefined
-  }, "Lat: ", x.lat, " | Lng: ", x.lng, " | UTC: ", x.utc))));
+  }, coordinates.map((x, i) => {
+    const pointer = coordinates[coordinates.length - 1 - i];
+    return __jsx(LineItem, {
+      key: pointer.utc,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 109
+      },
+      __self: undefined
+    }, "Lat: ", pointer.lat, " | Lng: ", pointer.lng, " | UTC: ", pointer.utc);
+  })));
 };
 
 const Button = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.button`
@@ -1052,13 +1055,13 @@ const ButtonLink = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.a`
 const Console = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.ul`
     background: #16103a;
     min-height: 500px;
-    max-height: 1024px;
+    max-height: 500px;
     overflow: scroll;
     margin-block-start: 0;
     padding-inline-start: 0;
 `;
 const LineItem = styled_components__WEBPACK_IMPORTED_MODULE_6___default.a.li`
-    font-size: 10px;
+    font-size: 8px;
     color: #fff;
     list-style-type: none;
     font-family: monospace;
