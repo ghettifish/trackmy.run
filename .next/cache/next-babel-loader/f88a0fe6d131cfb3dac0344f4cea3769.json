@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport Link from 'next/link';\n\nconst StartButton = () => __jsx(Link, {\n  href: \"/running\"\n}, __jsx(\"a\", null, \"Start Run\"));\n\nexport default StartButton;","map":null,"metadata":{},"sourceType":"module"}

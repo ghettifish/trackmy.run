@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\n\nconst Timer = props => __jsx(\"p\", null, __jsx(\"strong\", null, \"Time: \"), props.time);\n\nexport default Timer;","map":null,"metadata":{},"sourceType":"module"}

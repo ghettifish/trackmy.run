@@ -1,0 +1,1 @@
+{"ast":null,"code":"import withApollo from 'next-with-apollo';\nimport ApolloClient from 'apollo-boost';\nimport { endpoint } from '../config';\nvar client = new ApolloClient({\n  uri: endpoint\n});\n\nfunction createClient(_ref) {\n  var headers = _ref.headers;\n  return client;\n}\n\nexport default withApollo(createClient);","map":null,"metadata":{},"sourceType":"module"}
