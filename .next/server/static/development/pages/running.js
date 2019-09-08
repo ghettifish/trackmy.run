@@ -130,6 +130,39 @@ const Distance = props => __jsx("p", {
 
 /***/ }),
 
+/***/ "./components/Speed.tsx":
+/*!******************************!*\
+  !*** ./components/Speed.tsx ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Speed.tsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+const Speed = props => __jsx("p", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 5
+  },
+  __self: undefined
+}, __jsx("strong", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 5
+  },
+  __self: undefined
+}, "Speed: "), props.speed.toFixed(), " mph");
+
+/* harmony default export */ __webpack_exports__["default"] = (Speed);
+
+/***/ }),
+
 /***/ "./components/Timer.tsx":
 /*!******************************!*\
   !*** ./components/Timer.tsx ***!
@@ -869,10 +902,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! spherical-geometry-js */ "spherical-geometry-js");
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
+/* harmony import */ var _components_Speed__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Speed */ "./components/Speed.tsx");
 
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 
@@ -936,14 +971,14 @@ const StartStop = props => {
     onClick: () => toggle(false),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 82
     },
     __self: undefined
   }, "Pause") : __jsx(Button, {
     onClick: () => toggle(true),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 83
     },
     __self: undefined
   }, "Start");
@@ -1013,7 +1048,7 @@ const Running = () => {
   return __jsx(_templates_Page__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 142
+      lineNumber: 143
     },
     __self: undefined
   }, __jsx("h1", {
@@ -1022,33 +1057,28 @@ const Running = () => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 143
+      lineNumber: 144
     },
     __self: undefined
   }, "Run!"), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_4__["default"], {
     time: duration,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 144
-    },
-    __self: undefined
-  }), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 145
     },
     __self: undefined
-  }, __jsx("strong", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 145
-    },
-    __self: undefined
-  }, "Speed: "), speed, " mph"), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    meters: distance,
+  }), __jsx(_components_Speed__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    speed: speed,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 146
+    },
+    __self: undefined
+  }), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    meters: distance,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
     },
     __self: undefined
   }), __jsx(StartStop, {
@@ -1056,26 +1086,26 @@ const Running = () => {
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 148
     },
     __self: undefined
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 149
     },
     __self: undefined
   }, __jsx(ButtonLink, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 149
     },
     __self: undefined
   }, "Stop")), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 150
     },
     __self: undefined
   }, coordinates.map((x, i) => {
@@ -1084,7 +1114,7 @@ const Running = () => {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 153
+        lineNumber: 154
       },
       __self: undefined
     }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");

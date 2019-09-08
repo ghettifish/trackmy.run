@@ -39,6 +39,41 @@ var Distance = function Distance(props) {
 
 /***/ }),
 
+/***/ "./components/Speed.tsx":
+/*!******************************!*\
+  !*** ./components/Speed.tsx ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Speed.tsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+var Speed = function Speed(props) {
+  return __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, __jsx("strong", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, "Speed: "), props.speed.toFixed(), " mph");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Speed);
+
+/***/ }),
+
 /***/ "./components/Timer.tsx":
 /*!******************************!*\
   !*** ./components/Timer.tsx ***!
@@ -14689,6 +14724,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! spherical-geometry-js */ "./node_modules/spherical-geometry-js/src/index.js");
 /* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
+/* harmony import */ var _components_Speed__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Speed */ "./components/Speed.tsx");
 
 
 
@@ -14735,6 +14771,7 @@ function _templateObject() {
 
   return data;
 }
+
 
 
 
@@ -14799,7 +14836,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 82
     },
     __self: this
   }, "Pause") : __jsx(Button, {
@@ -14808,7 +14845,7 @@ var StartStop = function StartStop(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 83
     },
     __self: this
   }, "Start");
@@ -14880,7 +14917,7 @@ var Running = function Running() {
   return __jsx(_templates_Page__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 142
+      lineNumber: 143
     },
     __self: this
   }, __jsx("h1", {
@@ -14889,33 +14926,28 @@ var Running = function Running() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 143
+      lineNumber: 144
     },
     __self: this
   }, "Run!"), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_6__["default"], {
     time: duration,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 144
-    },
-    __self: this
-  }), __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 145
     },
     __self: this
-  }, __jsx("strong", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 145
-    },
-    __self: this
-  }, "Speed: "), speed, " mph"), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    meters: distance,
+  }), __jsx(_components_Speed__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    speed: speed,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 146
+    },
+    __self: this
+  }), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    meters: distance,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
     },
     __self: this
   }), __jsx(StartStop, {
@@ -14923,26 +14955,26 @@ var Running = function Running() {
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 148
     },
     __self: this
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 149
     },
     __self: this
   }, __jsx(ButtonLink, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 149
     },
     __self: this
   }, "Stop")), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 150
     },
     __self: this
   }, coordinates.map(function (x, i) {
@@ -14951,7 +14983,7 @@ var Running = function Running() {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 153
+        lineNumber: 154
       },
       __self: this
     }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");

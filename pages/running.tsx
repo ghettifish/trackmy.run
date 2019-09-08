@@ -6,6 +6,7 @@ import { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
 import styled from "styled-components";
 import { computeDistanceBetween, LatLng } from "spherical-geometry-js";
 import Distance from "../components/Distance";
+import Speed from "../components/Speed";
 
 
 const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => void) => void = (arr, callback) => {
@@ -142,7 +143,7 @@ const Running = () => {
         <Page>
             <h1 style={{fontFamily: "sans-serif"}}>Run!</h1>
             <Timer time={duration}/>
-            <p><strong>Speed: </strong>{speed} mph</p>
+            <Speed speed={speed}/>
             <Distance meters={distance} />
             <StartStop isRunning={isRunning} toggle={setIsRunning}/>
             <Link href="/finished"><ButtonLink>Stop</ButtonLink></Link>
