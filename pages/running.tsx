@@ -151,7 +151,7 @@ const Running = () => {
             {
                 coordinates.map((x,i) => {
                     const pointer = coordinates[coordinates.length - 1 -i];
-                    return <LineItem key={pointer.utc}>Lat: {pointer.latitude} | Lng: {pointer.longitude} | UTC: {pointer.utc} | Speed: { pointer.speed || "null"}</LineItem>
+                    return <LineItem key={pointer.utc}>Lat: {pointer.latitude} | Lng: {pointer.longitude} | UTC: {pointer.utc}</LineItem>
                 })
             }
             </Console>
