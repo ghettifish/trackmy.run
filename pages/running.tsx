@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 
 
-const getCoordinates: (arr: Coordinates[], callback: any) => void = (arr, callback) => {
+const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => void) => void = (arr, callback) => {
     
     let response = null;
     var options = {
@@ -17,10 +17,15 @@ const getCoordinates: (arr: Coordinates[], callback: any) => void = (arr, callba
     };
 
     function success(pos: any) {
-        let crd = pos.coords;
+        let crd: Coordinates = pos.coords;
         response = {
-            lat: crd.latitude,
-            lng: crd.longitude,
+            latitude: crd.latitude,
+            longitude: crd.longitude,
+            accuracy: crd.accuracy,
+            altitude: crd.altitude,
+            altitudeAccuracy: crd.altitudeAccuracy,
+            heading: crd.heading,
+            speed: crd.speed,
             utc: Date.now()
         } as Coordinates
         callback([...arr, response]);
@@ -35,11 +40,33 @@ const getCoordinates: (arr: Coordinates[], callback: any) => void = (arr, callba
 }
 
 interface Coordinates {
-    lat: number;
-    lng: number;
+    latitude: number;
+    longitude: number;
     utc: number;
+    altitude?: number | null;
+    accuracy?: number;
+    altitudeAccuracy?: number | null;
+    heading?: number | null;
+    speed?: number | null;
 }
 
+const sampleData: Coordinates[] = [
+    {
+        latitude: 39.0067718,
+        longitude: -105.06114945,
+        utc: 1567956461422
+    },
+    {
+        latitude: 39.0069154,
+        longitude: -105.0603721,
+        utc: 1567956490407
+    },
+    {
+        latitude: 38.9993031,
+        longitude: -105.0402898,
+        utc: 1567958139410
+    }
+]
 interface StartStopProps {
     isRunning: boolean,
     toggle: Dispatch<SetStateAction<boolean>>
@@ -78,13 +105,18 @@ const Running = () => {
     const [coordinates, setCoordinates] = useState([] as Coordinates[]);
     const [isRunning, setIsRunning] = useState(true);
     const [duration, setDuration]  = useState(0);
-
+    const [speed, setSpeed] = useState(0);
     useInterval(() => {
         if(isRunning) {
             getCoordinates(coordinates, setCoordinates);
             const currentTime = coordinates[coordinates.length-1] && coordinates[coordinates.length-1].utc;
             if(currentTime) {
                 setDuration((currentTime - startTime) / 1000);
+            }
+
+            const currentSpeed = coordinates[coordinates.length-1] && coordinates[coordinates.length-1].speed;
+            if(currentSpeed){
+                setSpeed(currentSpeed);
             }
             console.log(coordinates)
            
@@ -100,13 +132,14 @@ const Running = () => {
             <h1 style={{fontFamily: "sans-serif"}}>Run!</h1>
             <MileCounter />
             <Timer time={duration}/>
+            <p><strong>Speed: </strong>{speed}</p>
             <StartStop isRunning={isRunning} toggle={setIsRunning}/>
             <Link href="/finished"><ButtonLink>Stop</ButtonLink></Link>
             <Console>
             {
                 coordinates.map((x,i) => {
                     const pointer = coordinates[coordinates.length - 1 -i];
-                    return <LineItem key={pointer.utc}>Lat: {pointer.lat} | Lng: {pointer.lng} | UTC: {pointer.utc}</LineItem>
+                    return <LineItem key={pointer.utc}>Lat: {pointer.latitude} | Lng: {pointer.longitude} | UTC: {pointer.utc} | Speed: { pointer.speed || "null"}</LineItem>
                 })
             }
             </Console>
