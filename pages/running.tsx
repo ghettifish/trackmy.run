@@ -136,7 +136,7 @@ const Console = styled.ul`
     padding-inline-start: 0;
 `;
 const LineItem = styled.li`
-    font-size: 10px;
+    font-size: 8px;
     color: #fff;
     list-style-type: none;
     font-family: monospace;
