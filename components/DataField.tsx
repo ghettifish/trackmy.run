@@ -16,11 +16,11 @@ const Styled = styled.p`
     flex-direction: column;
     align-items: center;
     font-family: sans-serif;
-    font-size: 36px;
+    font-size: 52px;
     font-weight: 100;
     color: ${props => props.theme.light};
     .label {
-        font-size:16px;
+        font-size:24px;
         font-weight: bold;
         text-transform: uppercase;
         margin-bottom: 10px;

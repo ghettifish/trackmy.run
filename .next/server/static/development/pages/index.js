@@ -93,40 +93,149 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/StartButton.tsx":
-/*!************************************!*\
-  !*** ./components/StartButton.tsx ***!
-  \************************************/
+/***/ "./components/Button.tsx":
+/*!*******************************!*\
+  !*** ./components/Button.tsx ***!
+  \*******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/StartButton.tsx";
+/* harmony import */ var _styles_theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/theme */ "./components/styles/theme.ts");
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+const Button = _styles_theme__WEBPACK_IMPORTED_MODULE_0__["default"].button`
+    padding: 10px 30px ;
+    background: none;
+    color: ${props => props.theme.green};
+    border: solid 1px ${props => props.theme.green};
+    margin: 15px;
+    font-family: sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 2px;
+`;
+/* harmony default export */ __webpack_exports__["default"] = (Button);
 
+/***/ }),
 
-const StartButton = () => __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  href: "/running",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 3
-  },
-  __self: undefined
-}, __jsx("a", {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 3
-  },
-  __self: undefined
-}, "Start Run"));
+/***/ "./components/Center.tsx":
+/*!*******************************!*\
+  !*** ./components/Center.tsx ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* harmony default export */ __webpack_exports__["default"] = (StartButton);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _styles_theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/theme */ "./components/styles/theme.ts");
+
+const Center = _styles_theme__WEBPACK_IMPORTED_MODULE_0__["default"].div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+/* harmony default export */ __webpack_exports__["default"] = (Center);
+
+/***/ }),
+
+/***/ "./components/FullPage.tsx":
+/*!*********************************!*\
+  !*** ./components/FullPage.tsx ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+const FullPage = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div`
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+/* harmony default export */ __webpack_exports__["default"] = (FullPage);
+
+/***/ }),
+
+/***/ "./components/styles/GlobalStyle.ts":
+/*!******************************************!*\
+  !*** ./components/styles/GlobalStyle.ts ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./theme */ "./components/styles/theme.ts");
+
+const GlobalStyle = _theme__WEBPACK_IMPORTED_MODULE_0__["createGlobalStyle"]`
+    html {
+        box-sizing: border-box;
+        font-size: 10px;
+    }
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+    body {
+        padding: 0px;
+        margin: 0px;
+        font-size: 1.5rem;
+        font-family: Arial, Helvetica, sans-serif;
+        color: ${props => props.theme.black};
+        background-color: ${props => props.theme.dark};
+    }
+    a {
+        text-decoration: none;
+        color: ${props => props.theme.gray};
+    }
+`;
+/* harmony default export */ __webpack_exports__["default"] = (GlobalStyle);
+
+/***/ }),
+
+/***/ "./components/styles/theme.ts":
+/*!************************************!*\
+  !*** ./components/styles/theme.ts ***!
+  \************************************/
+/*! exports provided: theme, css, keyframes, ThemeProvider, createGlobalStyle, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "theme", function() { return theme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "css", function() { return css; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyframes", function() { return keyframes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemeProvider", function() { return ThemeProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createGlobalStyle", function() { return createGlobalStyle; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+const theme = {
+  light: '#fff',
+  dark: '#060318',
+  red: '#FF0000',
+  black: '#393939',
+  green: '#7fff50',
+  lightgrey: '#E1E1E1',
+  offWhite: '#EDEDED',
+  maxWidth: '1000px',
+  boxShadow: '0 12px 24px 0 rgba(0,0,0,0.9)',
+  gray: '#404040',
+  deepPurple: '#16103a'
+};
+const {
+  css,
+  default: styled,
+  keyframes,
+  ThemeProvider,
+  createGlobalStyle
+} = styled_components__WEBPACK_IMPORTED_MODULE_0__;
+
+/* harmony default export */ __webpack_exports__["default"] = (styled);
 
 /***/ }),
 
@@ -806,36 +915,78 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_StartButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/StartButton */ "./components/StartButton.tsx");
+/* harmony import */ var _components_FullPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/FullPage */ "./components/FullPage.tsx");
+/* harmony import */ var _templates_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../templates/Page */ "./templates/Page.tsx");
+/* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Button */ "./components/Button.tsx");
+/* harmony import */ var _components_Center__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Center */ "./components/Center.tsx");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_6__);
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/index.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
+
+
+
+
+
 const Home = ({
   userAgent
-}) => __jsx("div", {
+}) => __jsx(_templates_Page__WEBPACK_IMPORTED_MODULE_2__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 12
   },
   __self: undefined
-}, __jsx("h1", {
+}, __jsx(_components_FullPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 6
+    lineNumber: 13
   },
   __self: undefined
-}, "Run Tracker"), __jsx(_components_StartButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+}, __jsx(Wrapper, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 14
   },
   __self: undefined
-}), __jsx("p", {
+}, __jsx(_components_Center__WEBPACK_IMPORTED_MODULE_5__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 8
+    lineNumber: 15
+  },
+  __self: undefined
+}, __jsx(Logo, {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 16
+  },
+  __self: undefined
+}, "Give.run"), __jsx("p", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 17
+  },
+  __self: undefined
+}, "Run for what you believe in, with anyone in the world."), __jsx(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
+  href: "/running",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 20
+  },
+  __self: undefined
+}, __jsx(_components_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 20
+  },
+  __self: undefined
+}, "Start Running"))))), ";", userAgent && __jsx("p", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 27
   },
   __self: undefined
 }, "useragent: ", userAgent));
@@ -849,7 +1000,71 @@ Home.getInitialProps = async ({
   };
 };
 
+const Logo = _components_styles_theme__WEBPACK_IMPORTED_MODULE_3__["default"].h1`
+
+    color: ${props => props.theme.light};
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    font-size: 44px;
+    font-weight: 100;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px #ff0000;
+
+`;
+const Wrapper = _components_styles_theme__WEBPACK_IMPORTED_MODULE_3__["default"].div`
+    p {
+        margin-top: 0;
+        margin-bottom: 50px;
+        color: white;
+    }
+`;
 /* harmony default export */ __webpack_exports__["default"] = (Home);
+
+/***/ }),
+
+/***/ "./templates/Page.tsx":
+/*!****************************!*\
+  !*** ./templates/Page.tsx ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
+/* harmony import */ var _components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/styles/GlobalStyle */ "./components/styles/GlobalStyle.ts");
+var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/templates/Page.tsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const Page = props => __jsx(_components_styles_theme__WEBPACK_IMPORTED_MODULE_1__["ThemeProvider"], {
+  theme: _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__["theme"],
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 9
+  },
+  __self: undefined
+}, __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 11
+  },
+  __self: undefined
+}, __jsx(_components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 12
+  },
+  __self: undefined
+}), props.children)));
+
+/* harmony default export */ __webpack_exports__["default"] = (Page);
 
 /***/ }),
 
@@ -983,6 +1198,17 @@ module.exports = require("prop-types-exact");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "styled-components":
+/*!************************************!*\
+  !*** external "styled-components" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("styled-components");
 
 /***/ }),
 

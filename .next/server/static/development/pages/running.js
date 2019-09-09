@@ -130,11 +130,11 @@ const Styled = _styles_theme__WEBPACK_IMPORTED_MODULE_1__["default"].p`
     flex-direction: column;
     align-items: center;
     font-family: sans-serif;
-    font-size: 36px;
+    font-size: 52px;
     font-weight: 100;
     color: ${props => props.theme.light};
     .label {
-        font-size:16px;
+        font-size:24px;
         font-weight: bold;
         text-transform: uppercase;
         margin-bottom: 10px;
@@ -175,6 +175,28 @@ const Distance = props => __jsx(_DataField__WEBPACK_IMPORTED_MODULE_1__["default
 }, convertMetersToMiles(props.meters), " miles");
 
 /* harmony default export */ __webpack_exports__["default"] = (Distance);
+
+/***/ }),
+
+/***/ "./components/FullPage.tsx":
+/*!*********************************!*\
+  !*** ./components/FullPage.tsx ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+const FullPage = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div`
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+/* harmony default export */ __webpack_exports__["default"] = (FullPage);
 
 /***/ }),
 
@@ -1022,10 +1044,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
 /* harmony import */ var _components_Speed__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Speed */ "./components/Speed.tsx");
+/* harmony import */ var _components_FullPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/FullPage */ "./components/FullPage.tsx");
 
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 
@@ -1122,9 +1146,11 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-const startTime = _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0___default()();
-
 const Running = () => {
+  const {
+    0: startTime,
+    1: setStartTime
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(_babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0___default()());
   const {
     0: coordinates,
     1: setCoordinates
@@ -1170,7 +1196,7 @@ const Running = () => {
       lineNumber: 143
     },
     __self: undefined
-  }, __jsx(FullPage, {
+  }, __jsx(_components_FullPage__WEBPACK_IMPORTED_MODULE_9__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 144
@@ -1182,31 +1208,44 @@ const Running = () => {
       lineNumber: 145
     },
     __self: undefined
-  }, __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    time: duration,
+  }, __jsx(Center, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 146
+    },
+    __self: undefined
+  }, __jsx(InfoText, {
+    isRunning: isRunning,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: undefined
+  }, "Paused")), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    time: duration,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 149
     },
     __self: undefined
   }), __jsx(_components_Speed__WEBPACK_IMPORTED_MODULE_8__["default"], {
     speed: speed,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 150
     },
     __self: undefined
   }), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_7__["default"], {
     meters: distance,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 151
     },
     __self: undefined
   }), __jsx(Center, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 152
     },
     __self: undefined
   }, __jsx(StartStop, {
@@ -1214,46 +1253,64 @@ const Running = () => {
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 150
+      lineNumber: 153
     },
     __self: undefined
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 154
     },
     __self: undefined
   }, __jsx(Button, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 154
     },
     __self: undefined
   }, "Stop"))))), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 158
     },
     __self: undefined
-  }, coordinates.map((x, i) => {
+  }, __jsx("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159
+    },
+    __self: undefined
+  }, "--------------"), __jsx("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: undefined
+  }, "|  nerdy shit |"), __jsx("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 161
+    },
+    __self: undefined
+  }, "--------------"), coordinates.map((x, i) => {
     const pointer = coordinates[coordinates.length - 1 - i];
-    return __jsx(LineItem, {
+    return __jsx("li", {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 159
+        lineNumber: 165
       },
       __self: undefined
     }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc);
   })));
 };
 
-const FullPage = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].div`
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const InfoText = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].p`
+    visibility: ${props => props.isRunning ? "hidden" : "visible"};
+    color: ${props => props.theme.green};
+    text-transform: uppercase;
+    font-size: 18px;
 `;
 const Button = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].button`
     padding: 10px 30px ;
@@ -1285,13 +1342,13 @@ const Console = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"]
     overflow: scroll;
     margin-block-start: 0;
     padding-inline-start: 0;
-`;
-const LineItem = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].li`
-    font-size: 8px;
-    color: #fff;
-    list-style-type: none;
-    font-family: monospace;
-    padding: 0;
+    li {
+        font-size: 8px;
+        color: #fff;
+        list-style-type: none;
+        font-family: monospace;
+        padding: 0;
+    }
 `;
 /* harmony default export */ __webpack_exports__["default"] = (Running);
 

@@ -19,7 +19,7 @@ var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Data
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    font-family: sans-serif;\n    font-size: 36px;\n    font-weight: 100;\n    color: ", ";\n    .label {\n        font-size:16px;\n        font-weight: bold;\n        text-transform: uppercase;\n        margin-bottom: 10px;\n    }\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    font-family: sans-serif;\n    font-size: 52px;\n    font-weight: 100;\n    color: ", ";\n    .label {\n        font-size:24px;\n        font-weight: bold;\n        text-transform: uppercase;\n        margin-bottom: 10px;\n    }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -87,6 +87,35 @@ var Distance = function Distance(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Distance);
+
+/***/ }),
+
+/***/ "./components/FullPage.tsx":
+/*!*********************************!*\
+  !*** ./components/FullPage.tsx ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    height: 100vh;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+var FullPage = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject());
+/* harmony default export */ __webpack_exports__["default"] = (FullPage);
 
 /***/ }),
 
@@ -14845,6 +14874,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! spherical-geometry-js */ "./node_modules/spherical-geometry-js/src/index.js");
 /* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
 /* harmony import */ var _components_Speed__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Speed */ "./components/Speed.tsx");
+/* harmony import */ var _components_FullPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/FullPage */ "./components/FullPage.tsx");
 
 
 
@@ -14852,18 +14882,8 @@ var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.t
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
 
-function _templateObject6() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    font-size: 8px;\n    color: #fff;\n    list-style-type: none;\n    font-family: monospace;\n    padding: 0;\n"]);
-
-  _templateObject6 = function _templateObject6() {
-    return data;
-  };
-
-  return data;
-}
-
 function _templateObject5() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: #16103a;\n    min-height: 500px;\n    max-height: 500px;\n    overflow: scroll;\n    margin-block-start: 0;\n    padding-inline-start: 0;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: #16103a;\n    min-height: 500px;\n    max-height: 500px;\n    overflow: scroll;\n    margin-block-start: 0;\n    padding-inline-start: 0;\n    li {\n        font-size: 8px;\n        color: #fff;\n        list-style-type: none;\n        font-family: monospace;\n        padding: 0;\n    }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -14903,7 +14923,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    height: 100vh;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    visibility: ", ";\n    color: ", ";\n    text-transform: uppercase;\n    font-size: 18px;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -14911,6 +14931,7 @@ function _templateObject() {
 
   return data;
 }
+
 
 
 
@@ -15012,28 +15033,30 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-var startTime = _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_2___default()();
-
 var Running = function Running() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])([]),
-      coordinates = _useState[0],
-      setCoordinates = _useState[1];
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(_babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_2___default()()),
+      startTime = _useState[0],
+      setStartTime = _useState[1];
 
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(true),
-      isRunning = _useState2[0],
-      setIsRunning = _useState2[1];
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])([]),
+      coordinates = _useState2[0],
+      setCoordinates = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
-      duration = _useState3[0],
-      setDuration = _useState3[1];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(true),
+      isRunning = _useState3[0],
+      setIsRunning = _useState3[1];
 
   var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
-      speed = _useState4[0],
-      setSpeed = _useState4[1];
+      duration = _useState4[0],
+      setDuration = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
-      distance = _useState5[0],
-      setDistance = _useState5[1];
+      speed = _useState5[0],
+      setSpeed = _useState5[1];
+
+  var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
+      distance = _useState6[0],
+      setDistance = _useState6[1];
 
   useInterval(function () {
     if (isRunning) {
@@ -15060,7 +15083,7 @@ var Running = function Running() {
       lineNumber: 143
     },
     __self: this
-  }, __jsx(FullPage, {
+  }, __jsx(_components_FullPage__WEBPACK_IMPORTED_MODULE_11__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 144
@@ -15072,31 +15095,44 @@ var Running = function Running() {
       lineNumber: 145
     },
     __self: this
-  }, __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    time: duration,
+  }, __jsx(Center, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 146
+    },
+    __self: this
+  }, __jsx(InfoText, {
+    isRunning: isRunning,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: this
+  }, "Paused")), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    time: duration,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 149
     },
     __self: this
   }), __jsx(_components_Speed__WEBPACK_IMPORTED_MODULE_10__["default"], {
     speed: speed,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 150
     },
     __self: this
   }), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_9__["default"], {
     meters: distance,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 151
     },
     __self: this
   }), __jsx(Center, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 152
     },
     __self: this
   }, __jsx(StartStop, {
@@ -15104,42 +15140,64 @@ var Running = function Running() {
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 150
+      lineNumber: 153
     },
     __self: this
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 154
     },
     __self: this
   }, __jsx(Button, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 154
     },
     __self: this
   }, "Stop"))))), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 158
     },
     __self: this
-  }, coordinates.map(function (x, i) {
+  }, __jsx("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159
+    },
+    __self: this
+  }, "--------------"), __jsx("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: this
+  }, "|  nerdy shit |"), __jsx("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 161
+    },
+    __self: this
+  }, "--------------"), coordinates.map(function (x, i) {
     var pointer = coordinates[coordinates.length - 1 - i];
-    return __jsx(LineItem, {
+    return __jsx("li", {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 159
+        lineNumber: 165
       },
       __self: this
     }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc);
   })));
 };
 
-var FullPage = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject());
+var InfoText = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].p(_templateObject(), function (props) {
+  return props.isRunning ? "hidden" : "visible";
+}, function (props) {
+  return props.theme.green;
+});
 var Button = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject2(), function (props) {
   return props.theme.green;
 }, function (props) {
@@ -15150,7 +15208,6 @@ var ButtonLink = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"
   return props.theme.green;
 });
 var Console = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].ul(_templateObject5());
-var LineItem = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].li(_templateObject6());
 /* harmony default export */ __webpack_exports__["default"] = (Running);
 
 /***/ }),

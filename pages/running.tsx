@@ -7,7 +7,7 @@ import styled from "../components/styles/theme";
 import { computeDistanceBetween, LatLng } from "spherical-geometry-js";
 import Distance from "../components/Distance";
 import Speed from "../components/Speed";
-
+import FullPage from "../components/FullPage";
 
 const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => void) => void = (arr, callback) => {
     
@@ -102,9 +102,9 @@ function useInterval(callback: any, delay: any) {
       }
     }, [delay]);
   }
-  const startTime = Date.now();
 
 const Running = () => {
+    const [startTime, setStartTime] = useState(Date.now());
     const [coordinates, setCoordinates] = useState([] as Coordinates[]);
     const [isRunning, setIsRunning] = useState(true);
     const [duration, setDuration]  = useState(0);
@@ -143,6 +143,9 @@ const Running = () => {
         <Page>
             <FullPage>
                 <div>
+                    <Center>
+                        <InfoText isRunning={isRunning}>Paused</InfoText>
+                    </Center>
                     <Timer time={duration}/>
                     <Speed speed={speed}/>
                     <Distance meters={distance} />
@@ -153,10 +156,13 @@ const Running = () => {
                 </div>
             </FullPage>
             <Console>
+                <li>--------------</li>
+                <li>|  nerdy shit |</li>
+                <li>--------------</li>
             {
                 coordinates.map((x,i) => {
                     const pointer = coordinates[coordinates.length - 1 -i];
-                    return <LineItem key={pointer.utc}>Lat: {pointer.latitude} | Lng: {pointer.longitude} | UTC: {pointer.utc}</LineItem>
+                    return <li key={pointer.utc}>Lat: {pointer.latitude} | Lng: {pointer.longitude} | UTC: {pointer.utc}</li>
                 })
             }
             </Console>
@@ -164,12 +170,16 @@ const Running = () => {
     )
 }
 
-const FullPage = styled.div`
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+interface InfoProps {
+    isRunning: boolean;
+}
+const InfoText = styled.p<InfoProps>`
+    visibility: ${props => props.isRunning ? "hidden" : "visible"};
+    color: ${props => props.theme.green};
+    text-transform: uppercase;
+    font-size: 18px;
 `
+
 const Button = styled.button`
     padding: 10px 30px ;
     background: none;
@@ -202,13 +212,14 @@ const Console = styled.ul`
     overflow: scroll;
     margin-block-start: 0;
     padding-inline-start: 0;
+    li {
+        font-size: 8px;
+        color: #fff;
+        list-style-type: none;
+        font-family: monospace;
+        padding: 0;
+    }
 `;
-const LineItem = styled.li`
-    font-size: 8px;
-    color: #fff;
-    list-style-type: none;
-    font-family: monospace;
-    padding: 0;
-`
+
 
 export default Running
