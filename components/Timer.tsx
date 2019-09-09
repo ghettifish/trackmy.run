@@ -1,3 +1,4 @@
+import DataField from "./DataField";
 interface Props {
     time: number;
 }
@@ -8,9 +9,9 @@ const getSeconds = (time:number) =>  (
 )
 
 const getMinutes = (time: number) => (
-    Math.floor(time / 60) < 10 
-        ? "0"+Math.floor(time / 60).toFixed() 
-        : Math.floor(time / 60).toFixed()
+    Math.floor(time / 60) % 60 < 10 
+        ? "0"+(Math.floor(time / 60)%60).toFixed() 
+        : (Math.floor(time / 60)%60).toFixed()
 )
 
 const getHours = (time: number) => (
@@ -21,5 +22,5 @@ const getHours = (time: number) => (
 
 const getTimestamp = (time: number) => `${getHours(time)}:${getMinutes(time)}:${getSeconds(time)}`
 
-const Timer = (props: Props) => <p><strong>Time: </strong>{getTimestamp(props.time)}</p>
+const Timer = (props: Props) => <DataField label="Time">{getTimestamp(props.time)}</DataField>
 export default Timer

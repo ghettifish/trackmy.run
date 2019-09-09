@@ -3,7 +3,7 @@ import Link from "next/link";
 import Timer from "../components/Timer";
 import MileCounter from "../components/MileCounter";
 import { useState, useEffect, Dispatch, SetStateAction, useRef } from 'react';
-import styled from "styled-components";
+import styled from "../components/styles/theme";
 import { computeDistanceBetween, LatLng } from "spherical-geometry-js";
 import Distance from "../components/Distance";
 import Speed from "../components/Speed";
@@ -141,12 +141,17 @@ const Running = () => {
 
     return (
         <Page>
-            <h1 style={{fontFamily: "sans-serif"}}>Run!</h1>
-            <Timer time={duration}/>
-            <Speed speed={speed}/>
-            <Distance meters={distance} />
-            <StartStop isRunning={isRunning} toggle={setIsRunning}/>
-            <Link href="/finished"><ButtonLink>Stop</ButtonLink></Link>
+            <FullPage>
+                <div>
+                    <Timer time={duration}/>
+                    <Speed speed={speed}/>
+                    <Distance meters={distance} />
+                    <Center>
+                        <StartStop isRunning={isRunning} toggle={setIsRunning}/>
+                        <Link href="/finished"><Button>Stop</Button></Link>
+                    </Center>
+                </div>
+            </FullPage>
             <Console>
             {
                 coordinates.map((x,i) => {
@@ -159,19 +164,34 @@ const Running = () => {
     )
 }
 
+const FullPage = styled.div`
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 const Button = styled.button`
     padding: 10px 30px ;
-    border: none;
-    background: orange;
+    background: none;
+    color: ${props => props.theme.green};
+    border: solid 1px ${props => props.theme.green};
     margin: 15px;
     font-family: sans-serif;
-    font-size: 14px;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 2px;
 `;
 
+const Center = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 const ButtonLink = styled.a`
+    display: block;
     padding: 10px 30px ;
     border: none;
-    background: orange;
+    background: ${props => props.theme.green};
     font-family: sans-serif;
     font-size: 14px;
 `;

@@ -1,5 +1,59 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/running.js"],{
 
+/***/ "./components/DataField.tsx":
+/*!**********************************!*\
+  !*** ./components/DataField.tsx ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styles_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/theme */ "./components/styles/theme.ts");
+
+var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/DataField.tsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    font-family: sans-serif;\n    font-size: 36px;\n    font-weight: 100;\n    color: ", ";\n    .label {\n        font-size:16px;\n        font-weight: bold;\n        text-transform: uppercase;\n        margin-bottom: 10px;\n    }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+
+var DataField = function DataField(props) {
+  return __jsx(Styled, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, __jsx("p", {
+    className: "label",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, props.label), props.children);
+};
+
+var Styled = _styles_theme__WEBPACK_IMPORTED_MODULE_2__["default"].p(_templateObject(), function (props) {
+  return props.theme.light;
+});
+/* harmony default export */ __webpack_exports__["default"] = (DataField);
+
+/***/ }),
+
 /***/ "./components/Distance.tsx":
 /*!*********************************!*\
   !*** ./components/Distance.tsx ***!
@@ -11,28 +65,25 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _DataField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataField */ "./components/DataField.tsx");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Distance.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 function convertMetersToMiles(meters) {
   return (meters / 1609.344).toFixed(4);
 }
 
 var Distance = function Distance(props) {
-  return __jsx("p", {
+  return __jsx(_DataField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    label: "Distance",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 10
     },
     __self: this
-  }, __jsx("strong", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }, "Distance: "), convertMetersToMiles(props.meters), " miles");
+  }, convertMetersToMiles(props.meters), " miles");
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Distance);
@@ -50,24 +101,21 @@ var Distance = function Distance(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _DataField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataField */ "./components/DataField.tsx");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Speed.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+
 var Speed = function Speed(props) {
-  return __jsx("p", {
+  return __jsx(_DataField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    label: "Speed",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5
+      lineNumber: 7
     },
     __self: this
-  }, __jsx("strong", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 5
-    },
-    __self: this
-  }, "Speed: "), props.speed.toFixed(), " mph");
+  }, props.speed.toFixed(), " mph");
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Speed);
@@ -85,20 +133,22 @@ var Speed = function Speed(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _DataField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataField */ "./components/DataField.tsx");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Timer.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 var getSeconds = function getSeconds(time) {
   return time % 60 < 10 ? "0" + (time % 60).toFixed() : (time % 60).toFixed();
 };
 
 var getMinutes = function getMinutes(time) {
-  return Math.floor(time / 60) < 10 ? "0" + (time / 60).toFixed() : (time / 60).toFixed();
+  return Math.floor(time / 60) % 60 < 10 ? "0" + (Math.floor(time / 60) % 60).toFixed() : (Math.floor(time / 60) % 60).toFixed();
 };
 
 var getHours = function getHours(time) {
-  return Math.floor(time / 3600) < 10 ? "0" + (time / 3600).toFixed() : (time / 3600).toFixed();
+  return Math.floor(time / 3600) < 10 ? "0" + Math.floor(time / 3600).toFixed() : Math.floor(time / 3600).toFixed();
 };
 
 var getTimestamp = function getTimestamp(time) {
@@ -106,22 +156,92 @@ var getTimestamp = function getTimestamp(time) {
 };
 
 var Timer = function Timer(props) {
-  return __jsx("p", {
+  return __jsx(_DataField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    label: "Time",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 25
     },
     __self: this
-  }, __jsx("strong", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 24
-    },
-    __self: this
-  }, "Time: "), getTimestamp(props.time));
+  }, getTimestamp(props.time));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Timer);
+
+/***/ }),
+
+/***/ "./components/styles/GlobalStyle.ts":
+/*!******************************************!*\
+  !*** ./components/styles/GlobalStyle.ts ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./theme */ "./components/styles/theme.ts");
+
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    html {\n        box-sizing: border-box;\n        font-size: 10px;\n    }\n    *, *:before, *:after {\n        box-sizing: inherit;\n    }\n    body {\n        padding: 0px;\n        margin: 0px;\n        font-size: 1.5rem;\n        font-family: Arial, Helvetica, sans-serif;\n        color: ", ";\n        background-color: ", ";\n    }\n    a {\n        text-decoration: none;\n        color: ", ";\n    }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+var GlobalStyle = Object(_theme__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"])(_templateObject(), function (props) {
+  return props.theme.black;
+}, function (props) {
+  return props.theme.dark;
+}, function (props) {
+  return props.theme.gray;
+});
+/* harmony default export */ __webpack_exports__["default"] = (GlobalStyle);
+
+/***/ }),
+
+/***/ "./components/styles/theme.ts":
+/*!************************************!*\
+  !*** ./components/styles/theme.ts ***!
+  \************************************/
+/*! exports provided: theme, css, keyframes, ThemeProvider, createGlobalStyle, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "theme", function() { return theme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "css", function() { return css; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyframes", function() { return keyframes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemeProvider", function() { return ThemeProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createGlobalStyle", function() { return createGlobalStyle; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+var theme = {
+  light: '#fff',
+  dark: '#060318',
+  red: '#FF0000',
+  black: '#393939',
+  green: '#7fff50',
+  lightgrey: '#E1E1E1',
+  offWhite: '#EDEDED',
+  maxWidth: '1000px',
+  boxShadow: '0 12px 24px 0 rgba(0,0,0,0.9)',
+  gray: '#404040',
+  deepPurple: '#16103a'
+};
+var _ref = styled_components__WEBPACK_IMPORTED_MODULE_0__,
+    css = _ref.css,
+    styled = _ref["default"],
+    keyframes = _ref.keyframes,
+    ThemeProvider = _ref.ThemeProvider,
+    createGlobalStyle = _ref.createGlobalStyle;
+
+/* harmony default export */ __webpack_exports__["default"] = (styled);
 
 /***/ }),
 
@@ -14721,7 +14841,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _components_Timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Timer */ "./components/Timer.tsx");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! spherical-geometry-js */ "./node_modules/spherical-geometry-js/src/index.js");
 /* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
 /* harmony import */ var _components_Speed__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Speed */ "./components/Speed.tsx");
@@ -14732,8 +14852,28 @@ var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/running.t
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
 
-function _templateObject4() {
+function _templateObject6() {
   var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    font-size: 8px;\n    color: #fff;\n    list-style-type: none;\n    font-family: monospace;\n    padding: 0;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: #16103a;\n    min-height: 500px;\n    max-height: 500px;\n    overflow: scroll;\n    margin-block-start: 0;\n    padding-inline-start: 0;\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: block;\n    padding: 10px 30px ;\n    border: none;\n    background: ", ";\n    font-family: sans-serif;\n    font-size: 14px;\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -14743,7 +14883,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    background: #16103a;\n    min-height: 500px;\n    max-height: 500px;\n    overflow: scroll;\n    margin-block-start: 0;\n    padding-inline-start: 0;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    display: flex;\n    justify-content: center;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -14753,7 +14893,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    padding: 10px 30px ;\n    border: none;\n    background: orange;\n    font-family: sans-serif;\n    font-size: 14px;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    padding: 10px 30px ;\n    background: none;\n    color: ", ";\n    border: solid 1px ", ";\n    margin: 15px;\n    font-family: sans-serif;\n    font-size: 18px;\n    text-transform: uppercase;\n    border-radius: 2px;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -14763,7 +14903,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    padding: 10px 30px ;\n    border: none;\n    background: orange;\n    margin: 15px;\n    font-family: sans-serif;\n    font-size: 14px;\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n    height: 100vh;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -14920,61 +15060,70 @@ var Running = function Running() {
       lineNumber: 143
     },
     __self: this
-  }, __jsx("h1", {
-    style: {
-      fontFamily: "sans-serif"
-    },
+  }, __jsx(FullPage, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 144
     },
     __self: this
-  }, "Run!"), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    time: duration,
+  }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 145
+    },
+    __self: this
+  }, __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    time: duration,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 146
     },
     __self: this
   }), __jsx(_components_Speed__WEBPACK_IMPORTED_MODULE_10__["default"], {
     speed: speed,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 146
+      lineNumber: 147
     },
     __self: this
   }), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_9__["default"], {
     meters: distance,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 148
     },
     __self: this
-  }), __jsx(StartStop, {
+  }), __jsx(Center, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 149
+    },
+    __self: this
+  }, __jsx(StartStop, {
     isRunning: isRunning,
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 150
     },
     __self: this
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 151
     },
     __self: this
-  }, __jsx(ButtonLink, {
+  }, __jsx(Button, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 151
     },
     __self: this
-  }, "Stop")), __jsx(Console, {
+  }, "Stop"))))), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 150
+      lineNumber: 155
     },
     __self: this
   }, coordinates.map(function (x, i) {
@@ -14983,17 +15132,25 @@ var Running = function Running() {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 154
+        lineNumber: 159
       },
       __self: this
-    }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");
+    }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc);
   })));
 };
 
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject());
-var ButtonLink = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].a(_templateObject2());
-var Console = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].ul(_templateObject3());
-var LineItem = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].li(_templateObject4());
+var FullPage = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject());
+var Button = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject2(), function (props) {
+  return props.theme.green;
+}, function (props) {
+  return props.theme.green;
+});
+var Center = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject3());
+var ButtonLink = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].a(_templateObject4(), function (props) {
+  return props.theme.green;
+});
+var Console = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].ul(_templateObject5());
+var LineItem = _components_styles_theme__WEBPACK_IMPORTED_MODULE_7__["default"].li(_templateObject6());
 /* harmony default export */ __webpack_exports__["default"] = (Running);
 
 /***/ }),
@@ -15009,18 +15166,36 @@ var LineItem = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].li(_tem
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
+/* harmony import */ var _components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/styles/GlobalStyle */ "./components/styles/GlobalStyle.ts");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/templates/Page.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+
+
+
 var Page = function Page(props) {
-  return __jsx("div", {
+  return __jsx(_components_styles_theme__WEBPACK_IMPORTED_MODULE_1__["ThemeProvider"], {
+    theme: _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__["theme"],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5
+      lineNumber: 9
     },
     __self: this
-  }, props.children);
+  }, __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: this
+  }, __jsx(_components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  }), props.children)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);

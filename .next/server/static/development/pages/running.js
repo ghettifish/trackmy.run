@@ -93,6 +93,57 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/DataField.tsx":
+/*!**********************************!*\
+  !*** ./components/DataField.tsx ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/theme */ "./components/styles/theme.ts");
+var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/DataField.tsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+const DataField = props => __jsx(Styled, {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 9
+  },
+  __self: undefined
+}, __jsx("p", {
+  className: "label",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 10
+  },
+  __self: undefined
+}, props.label), props.children);
+
+const Styled = _styles_theme__WEBPACK_IMPORTED_MODULE_1__["default"].p`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 36px;
+    font-weight: 100;
+    color: ${props => props.theme.light};
+    .label {
+        font-size:16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+`;
+/* harmony default export */ __webpack_exports__["default"] = (DataField);
+
+/***/ }),
+
 /***/ "./components/Distance.tsx":
 /*!*********************************!*\
   !*** ./components/Distance.tsx ***!
@@ -104,27 +155,24 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _DataField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataField */ "./components/DataField.tsx");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Distance.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 function convertMetersToMiles(meters) {
   return (meters / 1609.344).toFixed(4);
 }
 
-const Distance = props => __jsx("p", {
+const Distance = props => __jsx(_DataField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  label: "Distance",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 10
   },
   __self: undefined
-}, __jsx("strong", {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 7
-  },
-  __self: undefined
-}, "Distance: "), convertMetersToMiles(props.meters), " miles");
+}, convertMetersToMiles(props.meters), " miles");
 
 /* harmony default export */ __webpack_exports__["default"] = (Distance);
 
@@ -141,23 +189,20 @@ const Distance = props => __jsx("p", {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _DataField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataField */ "./components/DataField.tsx");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Speed.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-const Speed = props => __jsx("p", {
+
+const Speed = props => __jsx(_DataField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  label: "Speed",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 7
   },
   __self: undefined
-}, __jsx("strong", {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 5
-  },
-  __self: undefined
-}, "Speed: "), props.speed.toFixed(), " mph");
+}, props.speed.toFixed(), " mph");
 
 /* harmony default export */ __webpack_exports__["default"] = (Speed);
 
@@ -174,33 +219,108 @@ const Speed = props => __jsx("p", {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _DataField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataField */ "./components/DataField.tsx");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/components/Timer.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+
 const getSeconds = time => time % 60 < 10 ? "0" + (time % 60).toFixed() : (time % 60).toFixed();
 
-const getMinutes = time => Math.floor(time / 60) < 10 ? "0" + (time / 60).toFixed() : (time / 60).toFixed();
+const getMinutes = time => Math.floor(time / 60) % 60 < 10 ? "0" + (Math.floor(time / 60) % 60).toFixed() : (Math.floor(time / 60) % 60).toFixed();
 
-const getHours = time => Math.floor(time / 3600) < 10 ? "0" + (time / 3600).toFixed() : (time / 3600).toFixed();
+const getHours = time => Math.floor(time / 3600) < 10 ? "0" + Math.floor(time / 3600).toFixed() : Math.floor(time / 3600).toFixed();
 
 const getTimestamp = time => `${getHours(time)}:${getMinutes(time)}:${getSeconds(time)}`;
 
-const Timer = props => __jsx("p", {
+const Timer = props => __jsx(_DataField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  label: "Time",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 24
+    lineNumber: 25
   },
   __self: undefined
-}, __jsx("strong", {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 24
-  },
-  __self: undefined
-}, "Time: "), getTimestamp(props.time));
+}, getTimestamp(props.time));
 
 /* harmony default export */ __webpack_exports__["default"] = (Timer);
+
+/***/ }),
+
+/***/ "./components/styles/GlobalStyle.ts":
+/*!******************************************!*\
+  !*** ./components/styles/GlobalStyle.ts ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./theme */ "./components/styles/theme.ts");
+
+const GlobalStyle = _theme__WEBPACK_IMPORTED_MODULE_0__["createGlobalStyle"]`
+    html {
+        box-sizing: border-box;
+        font-size: 10px;
+    }
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+    body {
+        padding: 0px;
+        margin: 0px;
+        font-size: 1.5rem;
+        font-family: Arial, Helvetica, sans-serif;
+        color: ${props => props.theme.black};
+        background-color: ${props => props.theme.dark};
+    }
+    a {
+        text-decoration: none;
+        color: ${props => props.theme.gray};
+    }
+`;
+/* harmony default export */ __webpack_exports__["default"] = (GlobalStyle);
+
+/***/ }),
+
+/***/ "./components/styles/theme.ts":
+/*!************************************!*\
+  !*** ./components/styles/theme.ts ***!
+  \************************************/
+/*! exports provided: theme, css, keyframes, ThemeProvider, createGlobalStyle, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "theme", function() { return theme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "css", function() { return css; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyframes", function() { return keyframes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemeProvider", function() { return ThemeProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createGlobalStyle", function() { return createGlobalStyle; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+const theme = {
+  light: '#fff',
+  dark: '#060318',
+  red: '#FF0000',
+  black: '#393939',
+  green: '#7fff50',
+  lightgrey: '#E1E1E1',
+  offWhite: '#EDEDED',
+  maxWidth: '1000px',
+  boxShadow: '0 12px 24px 0 rgba(0,0,0,0.9)',
+  gray: '#404040',
+  deepPurple: '#16103a'
+};
+const {
+  css,
+  default: styled,
+  keyframes,
+  ThemeProvider,
+  createGlobalStyle
+} = styled_components__WEBPACK_IMPORTED_MODULE_0__;
+
+/* harmony default export */ __webpack_exports__["default"] = (styled);
 
 /***/ }),
 
@@ -897,8 +1017,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Timer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Timer */ "./components/Timer.tsx");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! spherical-geometry-js */ "spherical-geometry-js");
 /* harmony import */ var spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(spherical_geometry_js__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _components_Distance__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Distance */ "./components/Distance.tsx");
@@ -1051,61 +1170,70 @@ const Running = () => {
       lineNumber: 143
     },
     __self: undefined
-  }, __jsx("h1", {
-    style: {
-      fontFamily: "sans-serif"
-    },
+  }, __jsx(FullPage, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 144
     },
     __self: undefined
-  }, "Run!"), __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    time: duration,
+  }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 145
+    },
+    __self: undefined
+  }, __jsx(_components_Timer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    time: duration,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 146
     },
     __self: undefined
   }), __jsx(_components_Speed__WEBPACK_IMPORTED_MODULE_8__["default"], {
     speed: speed,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 146
+      lineNumber: 147
     },
     __self: undefined
   }), __jsx(_components_Distance__WEBPACK_IMPORTED_MODULE_7__["default"], {
     meters: distance,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 148
     },
     __self: undefined
-  }), __jsx(StartStop, {
+  }), __jsx(Center, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 149
+    },
+    __self: undefined
+  }, __jsx(StartStop, {
     isRunning: isRunning,
     toggle: setIsRunning,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 150
     },
     __self: undefined
   }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
     href: "/finished",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 151
     },
     __self: undefined
-  }, __jsx(ButtonLink, {
+  }, __jsx(Button, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 151
     },
     __self: undefined
-  }, "Stop")), __jsx(Console, {
+  }, "Stop"))))), __jsx(Console, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 150
+      lineNumber: 155
     },
     __self: undefined
   }, coordinates.map((x, i) => {
@@ -1114,29 +1242,43 @@ const Running = () => {
       key: pointer.utc,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 154
+        lineNumber: 159
       },
       __self: undefined
-    }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc, " | Speed: ", pointer.speed || "null");
+    }, "Lat: ", pointer.latitude, " | Lng: ", pointer.longitude, " | UTC: ", pointer.utc);
   })));
 };
 
-const Button = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.button`
+const FullPage = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].div`
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+const Button = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].button`
     padding: 10px 30px ;
-    border: none;
-    background: orange;
+    background: none;
+    color: ${props => props.theme.green};
+    border: solid 1px ${props => props.theme.green};
     margin: 15px;
     font-family: sans-serif;
-    font-size: 14px;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 2px;
 `;
-const ButtonLink = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.a`
+const Center = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].div`
+    display: flex;
+    justify-content: center;
+`;
+const ButtonLink = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].a`
+    display: block;
     padding: 10px 30px ;
     border: none;
-    background: orange;
+    background: ${props => props.theme.green};
     font-family: sans-serif;
     font-size: 14px;
 `;
-const Console = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.ul`
+const Console = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].ul`
     background: #16103a;
     min-height: 500px;
     max-height: 500px;
@@ -1144,7 +1286,7 @@ const Console = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.ul`
     margin-block-start: 0;
     padding-inline-start: 0;
 `;
-const LineItem = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.li`
+const LineItem = _components_styles_theme__WEBPACK_IMPORTED_MODULE_5__["default"].li`
     font-size: 8px;
     color: #fff;
     list-style-type: none;
@@ -1166,17 +1308,35 @@ const LineItem = styled_components__WEBPACK_IMPORTED_MODULE_5___default.a.li`
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
+/* harmony import */ var _components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/styles/GlobalStyle */ "./components/styles/GlobalStyle.ts");
 var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/templates/Page.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-const Page = props => __jsx("div", {
+
+
+
+const Page = props => __jsx(_components_styles_theme__WEBPACK_IMPORTED_MODULE_1__["ThemeProvider"], {
+  theme: _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__["theme"],
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 9
   },
   __self: undefined
-}, props.children);
+}, __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 11
+  },
+  __self: undefined
+}, __jsx(_components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 12
+  },
+  __self: undefined
+}), props.children)));
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);
 
