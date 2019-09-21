@@ -9,7 +9,7 @@ import Distance from "../components/Distance";
 import Speed from "../components/Speed";
 import FullPage from "../components/FullPage";
 const io = require('socket.io-client');
-const socket  = io('http://localhost:8000');
+const socket  = io('https://where-is-nic.herokuapp.com');
 
 const CurrentRun = () => {
 
