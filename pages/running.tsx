@@ -10,8 +10,8 @@ import Speed from "../components/Speed";
 import FullPage from "../components/FullPage";
 import socketIOClient from 'socket.io-client'
 
-const endpoint  = 'http://localhost:8000';
-
+const io = require('socket.io-client');
+const socket  = io('https://where-is-nic.herokuapp.com');
 
 const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => void) => void = (arr, callback) => {
     
@@ -116,7 +116,6 @@ const Running = () => {
     const [distance, setDistance] = useState(0);
 
     const send = () => {
-        const socket = socketIOClient(endpoint)
         socket.emit("currentRun", JSON.stringify({duration, speed, distance}))
     }
 
