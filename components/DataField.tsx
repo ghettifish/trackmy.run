@@ -11,7 +11,7 @@ const DataField  = (props: Props) =>
         {props.children}
     </Styled>
 
-const Styled = styled.p`
+const Styled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const endpoint = \"http://localhost:4000\";","map":{"version":3,"sources":["/Users/nicbovee/Projects/PrismaDemo/frontend/config.ts"],"names":["endpoint"],"mappings":"AACA,OAAO,MAAMA,QAAgB,GAAG,uBAAzB","sourcesContent":["\nexport const endpoint: string = \"http://localhost:4000\""]},"metadata":{},"sourceType":"module"}

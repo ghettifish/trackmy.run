@@ -6479,10 +6479,10 @@ exports.SUPPORTS_PERFORMANCE_USER_TIMING = exports.SUPPORTS_PERFORMANCE && typeo
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fnicbovee%2FProjects%2FPrismaDemo%2Ffrontend%2Fpages%2Findex.tsx!./":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fnicbovee%2FProjects%2FPrismaDemo%2Ffrontend%2Fpages%2Findex.tsx ***!
-  \***************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fnicolasbovee%2FProjects%2Ftrackmy.run%2Fpages%2Findex.tsx!./":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fnicolasbovee%2FProjects%2Ftrackmy.run%2Fpages%2Findex.tsx ***!
+  \*********************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13624,7 +13624,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/index.tsx";
+var _jsxFileName = "/Users/nicolasbovee/Projects/trackmy.run/pages/index.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
 
@@ -13766,7 +13766,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
 /* harmony import */ var _components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/styles/GlobalStyle */ "./components/styles/GlobalStyle.ts");
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/templates/Page.tsx";
+var _jsxFileName = "/Users/nicolasbovee/Projects/trackmy.run/templates/Page.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -13801,13 +13801,13 @@ var Page = function Page(props) {
 /***/ }),
 
 /***/ 2:
-/*!*******************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fnicbovee%2FProjects%2FPrismaDemo%2Ffrontend%2Fpages%2Findex.tsx ***!
-  \*******************************************************************************************************************************************/
+/*!*************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fnicolasbovee%2FProjects%2Ftrackmy.run%2Fpages%2Findex.tsx ***!
+  \*************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fnicbovee%2FProjects%2FPrismaDemo%2Ffrontend%2Fpages%2Findex.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fnicbovee%2FProjects%2FPrismaDemo%2Ffrontend%2Fpages%2Findex.tsx!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fnicolasbovee%2FProjects%2Ftrackmy.run%2Fpages%2Findex.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fnicolasbovee%2FProjects%2Ftrackmy.run%2Fpages%2Findex.tsx!./");
 
 
 /***/ }),

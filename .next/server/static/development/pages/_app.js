@@ -759,7 +759,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _lib_withData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/withData */ "./lib/withData.ts");
 
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/_app.tsx";
+var _jsxFileName = "/Users/nicolasbovee/Projects/trackmy.run/pages/_app.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 

@@ -8,6 +8,10 @@ import { computeDistanceBetween, LatLng } from "spherical-geometry-js";
 import Distance from "../components/Distance";
 import Speed from "../components/Speed";
 import FullPage from "../components/FullPage";
+import socketIOClient from 'socket.io-client'
+
+const endpoint  = 'http://localhost:8000';
+
 
 const getCoordinates: (arr: Coordinates[], callback: (arr: Coordinates[]) => void) => void = (arr, callback) => {
     
@@ -111,16 +115,22 @@ const Running = () => {
     const [speed, setSpeed] = useState(0);
     const [distance, setDistance] = useState(0);
 
+    const send = () => {
+        const socket = socketIOClient(endpoint)
+        socket.emit("currentRun", JSON.stringify({duration, speed, distance}))
+    }
+
     useInterval(() => {
         if(isRunning) {
             getCoordinates(coordinates, setCoordinates);
             const current = coordinates[coordinates.length-1] && coordinates[coordinates.length-1]
             const previous = coordinates[coordinates.length-2] && coordinates[coordinates.length-2]
 
-            const currentTime = current && current.utc;
-            if(currentTime) {
-                setDuration((currentTime - startTime) / 1000);
-            }
+            // const currentTime = current && current.utc;
+            // if(currentTime) {
+            //     setDuration((currentTime - startTime) / 1000);
+            // }
+            setDuration((duration+1));
 
            
 
@@ -131,6 +141,7 @@ const Running = () => {
                 setDistance(distance + currentDistance);
 
             }
+            send();
            
             //console.log(coordinates);
 

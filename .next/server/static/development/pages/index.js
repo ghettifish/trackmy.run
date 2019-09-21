@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -922,7 +922,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Center__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Center */ "./components/Center.tsx");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_6__);
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/index.tsx";
+var _jsxFileName = "/Users/nicolasbovee/Projects/trackmy.run/pages/index.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1036,7 +1036,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/styles/theme */ "./components/styles/theme.ts");
 /* harmony import */ var _components_styles_GlobalStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/styles/GlobalStyle */ "./components/styles/GlobalStyle.ts");
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/templates/Page.tsx";
+var _jsxFileName = "/Users/nicolasbovee/Projects/trackmy.run/templates/Page.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1068,14 +1068,14 @@ const Page = props => __jsx(_components_styles_theme__WEBPACK_IMPORTED_MODULE_1_
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!*******************************!*\
   !*** multi ./pages/index.tsx ***!
   \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nicbovee/Projects/PrismaDemo/frontend/pages/index.tsx */"./pages/index.tsx");
+module.exports = __webpack_require__(/*! /Users/nicolasbovee/Projects/trackmy.run/pages/index.tsx */"./pages/index.tsx");
 
 
 /***/ }),

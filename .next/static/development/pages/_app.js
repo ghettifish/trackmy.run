@@ -27396,7 +27396,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/nicbovee/Projects/PrismaDemo/frontend/pages/_app.tsx";
+var _jsxFileName = "/Users/nicolasbovee/Projects/trackmy.run/pages/_app.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 
